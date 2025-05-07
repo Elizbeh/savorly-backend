@@ -1,0 +1,735 @@
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-04-29T15:12:15.028Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-04-29T15:12:15.030Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-04-29T15:12:16.712Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T15:49:00.262Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T15:49:00.275Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T15:49:00.289Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T15:49:00.303Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-04-29T15:49:12.388Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-04-29T15:49:21.331Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-04-29T15:49:21.332Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-04-29T15:49:21.332Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-29T15:49:21.428Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-29T15:49:21.438Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T15:49:35.596Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T15:49:35.611Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T15:49:35.627Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T15:49:35.642Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-29T15:49:35.687Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-29T15:49:35.703Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-29T15:49:35.728Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-04-29T15:56:44.878Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-04-29T15:56:44.879Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-04-29T15:56:46.433Z"}
+{"level":"info","message":"Recipe created with ID 2","timestamp":"2025-04-29T15:56:54.545Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-04-29T16:00:00.919Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:24:36.620Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:24:36.632Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:24:36.645Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:24:36.715Z"}
+{"level":"info","message":"Fetched 2 recipes","timestamp":"2025-04-29T16:24:47.178Z"}
+{"level":"info","message":"Fetched 2 recipes","timestamp":"2025-04-29T16:24:47.198Z"}
+{"level":"info","message":"Recipe created with ID 3","timestamp":"2025-04-29T16:26:50.400Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:30:58.930Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:30:58.955Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:30:58.978Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:30:59.018Z"}
+{"level":"info","message":"Recipe created with ID 4","timestamp":"2025-04-29T16:32:54.321Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-04-29T16:34:11.600Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-04-29T16:34:11.602Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-04-29T16:34:13.118Z"}
+{"level":"info","message":"Recipe created with ID 5","timestamp":"2025-04-29T16:34:17.061Z"}
+{"level":"info","message":"Recipe created with ID 6","timestamp":"2025-04-29T16:35:57.621Z"}
+{"level":"info","message":"Fetched 6 recipes","timestamp":"2025-04-29T16:36:38.036Z"}
+{"level":"info","message":"Fetched 6 recipes","timestamp":"2025-04-29T16:36:38.059Z"}
+{"level":"info","message":"Deleted recipe ID 5, affected rows: 1","timestamp":"2025-04-29T16:36:44.456Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:36:50.853Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:36:50.865Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:36:50.879Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:36:50.894Z"}
+{"level":"info","message":"Fetched 5 recipes","timestamp":"2025-04-29T16:36:50.920Z"}
+{"level":"info","message":"Fetched 5 recipes","timestamp":"2025-04-29T16:36:50.937Z"}
+{"level":"info","message":"Fetched 5 recipes","timestamp":"2025-04-29T16:36:51.024Z"}
+{"level":"info","message":"Deleted recipe ID 4, affected rows: 1","timestamp":"2025-04-29T16:36:57.177Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:36:59.995Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:37:00.004Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:37:00.017Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T16:37:00.031Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T16:37:00.047Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T16:37:00.066Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T16:37:00.077Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-04-29T20:36:29.724Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-04-29T20:36:29.724Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-04-29T20:36:29.725Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:36:29.813Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:36:29.824Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:42:10.869Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:42:10.888Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T20:42:31.909Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T20:42:31.918Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T20:42:31.927Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T20:42:31.937Z"}
+{"level":"info","message":"Updated recipe ID 6, affected rows: 1","timestamp":"2025-04-29T20:43:05.458Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:52:46.716Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:52:46.733Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T20:52:59.498Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T20:52:59.506Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T20:52:59.517Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T20:52:59.525Z"}
+{"level":"info","message":"Updated recipe ID 6, affected rows: 1","timestamp":"2025-04-29T20:53:19.161Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:53:21.254Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:53:21.259Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:56:50.398Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:56:50.412Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:57:13.392Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T20:57:13.408Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-04-29T21:00:00.668Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:02.215Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:02.227Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:02.240Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:02.251Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:02.312Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:02.329Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:02.372Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:10.479Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:10.497Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:10.510Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:10.518Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:10.596Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:10.614Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:10.633Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:31.970Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:31.981Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:31.994Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:05:32.012Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:32.085Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:32.115Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:05:32.124Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:03.592Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:03.603Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:03.616Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:03.625Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:03.678Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:03.695Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:03.719Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:08.142Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:08.148Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:08.154Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:08.159Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:08.217Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:08.225Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:08.398Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:11.524Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:11.533Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:11.540Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:11.547Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:11.592Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:11.601Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:11.643Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:36.371Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:36.379Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:36.393Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:07:36.402Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:36.442Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:36.460Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:07:36.486Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:10:14.757Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:10:14.771Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:10:14.786Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:10:14.796Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:10:14.862Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:10:14.869Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:10:14.873Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:11:07.542Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:11:07.557Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:11:07.569Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:11:07.581Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:11:07.624Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:11:07.649Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:11:07.666Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:11:21.410Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:11:21.427Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:11:21.440Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:11:21.450Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:11:21.482Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:11:21.499Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:11:21.531Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-04-29T21:13:19.904Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-04-29T21:13:19.905Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-04-29T21:13:20.479Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:14:17.800Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:14:17.811Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:14:17.819Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:14:17.852Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:14:17.869Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:14:17.872Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:14:17.879Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-29T21:14:22.816Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-29T21:14:22.820Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:14:33.756Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:14:33.767Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:17:56.861Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:17:56.872Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:17:56.888Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:17:56.893Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:19:32.246Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-29T21:19:32.255Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:24:11.410Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:24:11.416Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:24:11.424Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:24:11.440Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:25:09.969Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:25:09.978Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:25:09.985Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-29T21:25:10.000Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-04-30T06:48:07.513Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-04-30T06:48:07.514Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-04-30T06:48:07.840Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-04-30T06:51:43.392Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-04-30T06:51:43.393Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-04-30T06:51:43.393Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T06:51:43.453Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T06:51:43.456Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-04-30T07:00:00.511Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:20:59.462Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:20:59.471Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:20:59.477Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:20:59.483Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:21:17.297Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:21:17.302Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:21:17.308Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:21:17.314Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:41:48.395Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:41:48.401Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:45:05.663Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:45:05.668Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:45:05.673Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:45:05.678Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:45:05.696Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:45:05.703Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:45:05.711Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:49:54.818Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:49:54.828Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:49:54.833Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T07:49:54.839Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:49:54.874Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:49:54.880Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:49:54.885Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:52:46.771Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:52:46.774Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-04-30T07:52:56.396Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-04-30T07:52:56.396Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-04-30T07:52:56.397Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:52:56.434Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:52:56.447Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:54:48.760Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T07:54:48.770Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-04-30T08:00:00.679Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-04-30T08:13:38.735Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-04-30T08:13:38.735Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-04-30T08:13:38.735Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T08:13:38.814Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T08:13:38.817Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T08:20:30.982Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T08:20:30.987Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T08:38:59.285Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T08:38:59.289Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-04-30T09:00:00.859Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T09:07:38.084Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T09:07:38.090Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:07:38.120Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:07:38.125Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:07:38.134Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:09:55.762Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:09:55.767Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-04-30T09:17:19.613Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-04-30T09:17:19.614Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-04-30T09:17:19.900Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-04-30T09:17:51.508Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-04-30T09:17:51.508Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-04-30T09:17:51.509Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:17:51.565Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:17:51.576Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T09:21:51.121Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T09:21:51.130Z"}
+{"level":"info","message":"Fetched 2 recipes","timestamp":"2025-04-30T09:21:51.131Z"}
+{"level":"info","message":"Fetched 2 recipes","timestamp":"2025-04-30T09:21:51.134Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T09:50:02.294Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T09:50:02.316Z"}
+{"level":"info","message":"Fetched 2 recipes","timestamp":"2025-04-30T09:50:02.317Z"}
+{"level":"info","message":"Fetched 2 recipes","timestamp":"2025-04-30T09:50:02.331Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T09:50:09.375Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T09:50:09.389Z"}
+{"level":"info","message":"Fetched 2 recipes","timestamp":"2025-04-30T09:50:09.394Z"}
+{"level":"info","message":"Fetched 2 recipes","timestamp":"2025-04-30T09:50:09.401Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:50:14.373Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T09:50:14.381Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-04-30T10:00:00.768Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T10:06:39.926Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T10:06:39.935Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T10:06:39.972Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T10:06:39.982Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T10:06:39.987Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-30T10:26:15.921Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-04-30T10:26:15.928Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-04-30T10:29:52.319Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-04-30T10:29:52.320Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-04-30T10:29:52.320Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T10:29:52.398Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T10:29:52.423Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-04-30T14:16:22.864Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-04-30T14:16:22.865Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-04-30T14:16:22.865Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:16:23.006Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:16:23.024Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T14:17:37.416Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T14:17:37.424Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:17:37.491Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:17:37.496Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:17:37.505Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T14:17:53.124Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T14:17:53.135Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:17:53.207Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:17:53.216Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:17:53.459Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:25:59.737Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:25:59.742Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:27:42.784Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T14:27:42.790Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-04-30T15:00:00.575Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T15:00:48.343Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T15:00:48.351Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T15:03:18.883Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-04-30T15:03:18.891Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T15:06:57.840Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-04-30T15:06:57.846Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-01T21:00:00.902Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-01T21:13:03.945Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-01T21:13:03.946Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-01T21:13:03.946Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:13:03.994Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:13:03.997Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:38:09.679Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:38:09.685Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:45:55.857Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:45:55.862Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:46:04.983Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:46:04.987Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T21:46:07.891Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T21:46:07.893Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:46:20.763Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:46:20.766Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T21:46:22.554Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T21:46:22.557Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:47:52.906Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T21:47:52.912Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-01T21:48:01.218Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-01T21:48:01.223Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-01T22:00:00.420Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:00:14.569Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:00:14.575Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T22:00:20.303Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T22:00:20.307Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:00:27.086Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:00:27.092Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T22:00:42.734Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T22:00:42.736Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:00:47.945Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:00:47.951Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T22:00:50.310Z"}
+{"level":"info","message":"Fetched 1 recipes","timestamp":"2025-05-01T22:00:50.311Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-01T22:00:59.767Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-01T22:00:59.777Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:01:30.829Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:01:30.834Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:01:43.395Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:01:43.401Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-01T22:01:50.510Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-01T22:01:50.515Z"}
+{"level":"info","message":"Updated recipe ID 6, affected rows: 1","timestamp":"2025-05-01T22:02:45.730Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:02:47.833Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:02:47.883Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-01T22:02:57.637Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-01T22:02:57.642Z"}
+{"level":"info","message":"Updated recipe ID 6, affected rows: 1","timestamp":"2025-05-01T22:03:17.809Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:03:20.012Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-01T22:03:20.063Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T10:09:09.877Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T10:09:09.878Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T10:09:10.302Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-05T11:00:00.834Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-05T12:00:00.984Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T12:18:24.284Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T12:18:24.286Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T12:18:25.337Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T12:19:23.791Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T12:19:23.792Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T12:19:23.792Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T12:19:23.877Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T12:19:23.882Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T12:19:36.394Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T12:19:36.405Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T12:19:36.441Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T12:19:36.452Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T12:19:36.456Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T12:25:55.296Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T12:25:55.305Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T12:25:55.370Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T12:25:55.376Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-05T14:00:00.412Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T14:02:13.228Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T14:02:13.231Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T14:02:14.632Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T14:47:02.996Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T14:47:03.002Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T14:47:04.030Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-05T15:00:00.528Z"}
+{"code":"WARN_DATA_TRUNCATED","errno":1265,"level":"error","message":"Error creating user: Data truncated for column 'role' at row 1","sql":"\n            INSERT INTO users \n            (email, password_hash, first_name, last_name, role, verification_token, verification_token_expires_at)\n            VALUES ('eliz01_01@yahoo.com', '$2a$10$AzE8fbDo6ozXFfvmFpNkyekjOtR5OMXLEcN.ZEDVaxrOde.b8rgXm', 'Liza', 'Grande', 'users', 'b68135e7-6fcb-4d3b-9739-206f6f7d09d4', '2025-05-05 18:09:14.653')\n        ","sqlMessage":"Data truncated for column 'role' at row 1","sqlState":"01000","stack":"Error: Data truncated for column 'role' at row 1\n    at PromisePool.query (/mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/node_modules/mysql2/lib/promise/pool.js:36:22)\n    at createUser (file:///mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/models/users.js:18:37)\n    at registerUser (file:///mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/controllers/authController.js:30:31)","timestamp":"2025-05-05T15:09:14.656Z"}
+{"level":"error","message":"Registration error for email eliz01_01@yahoo.com: Data truncated for column 'role' at row 1","stack":"Error: Data truncated for column 'role' at row 1\n    at PromisePool.query (/mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/node_modules/mysql2/lib/promise/pool.js:36:22)\n    at createUser (file:///mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/models/users.js:18:37)\n    at registerUser (file:///mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/controllers/authController.js:30:31)","timestamp":"2025-05-05T15:09:14.656Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T15:13:16.232Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T15:13:16.233Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T15:13:16.597Z"}
+{"code":"WARN_DATA_TRUNCATED","errno":1265,"level":"error","message":"Error creating user: Data truncated for column 'role' at row 1","sql":"\n            INSERT INTO users \n            (email, password_hash, first_name, last_name, role, verification_token, verification_token_expires_at)\n            VALUES ('eliz01_01@yahoo.com', '$2a$10$hDgA9pud9j4Fpu2e27CJJOT84yR0LC5.EoZB/Y/yfWAvk4unB1wce', 'Liza', 'Grande', 'users', 'fd49e0ba-3b02-411c-be2b-87583382f7cf', '2025-05-05 18:13:42.518')\n        ","sqlMessage":"Data truncated for column 'role' at row 1","sqlState":"01000","stack":"Error: Data truncated for column 'role' at row 1\n    at PromisePool.query (/mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/node_modules/mysql2/lib/promise/pool.js:36:22)\n    at createUser (file:///mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/models/users.js:18:37)\n    at registerUser (file:///mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/controllers/authController.js:30:31)","timestamp":"2025-05-05T15:13:42.520Z"}
+{"level":"error","message":"Registration error for email eliz01_01@yahoo.com: Data truncated for column 'role' at row 1","stack":"Error: Data truncated for column 'role' at row 1\n    at PromisePool.query (/mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/node_modules/mysql2/lib/promise/pool.js:36:22)\n    at createUser (file:///mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/models/users.js:18:37)\n    at registerUser (file:///mnt/c/Users/eliz0/OneDrive/Bureau/Savorly/backend/controllers/authController.js:30:31)","timestamp":"2025-05-05T15:13:42.521Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T15:16:04.539Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T15:16:04.540Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T15:16:04.890Z"}
+{"level":"info","message":"Verification email sent to eliz01_01@yahoo.com","timestamp":"2025-05-05T15:16:10.000Z"}
+{"level":"info","message":"New user registered: eliz01_01@yahoo.com","timestamp":"2025-05-05T15:16:10.000Z"}
+{"level":"info","message":"Unverified email login attempt: eliz01_01@yahoo.com","timestamp":"2025-05-05T15:16:53.518Z"}
+{"level":"info","message":"Unverified email login attempt: eliz01_01@yahoo.com","timestamp":"2025-05-05T15:20:48.774Z"}
+{"level":"info","message":"Verification email sent to eliz01_01@yahoo.com","timestamp":"2025-05-05T15:30:13.368Z"}
+{"level":"info","message":"New user registered: eliz01_01@yahoo.com","timestamp":"2025-05-05T15:30:13.368Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T15:33:30.262Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T15:33:30.263Z"}
+{"level":"info","message":"User logged in: eliz01_01@yahoo.com","timestamp":"2025-05-05T15:33:30.263Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T15:33:30.323Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T15:33:30.334Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T15:34:36.516Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T15:34:36.517Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T15:34:36.517Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T15:34:36.568Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T15:34:36.571Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-05T16:00:00.787Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T19:34:16.557Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T19:34:16.559Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T19:34:17.541Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T19:35:22.877Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T19:35:22.877Z"}
+{"level":"info","message":"User logged in: eliz01_01@yahoo.com","timestamp":"2025-05-05T19:35:22.878Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:35:22.932Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:35:22.952Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T19:35:43.164Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T19:35:43.164Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T19:35:43.165Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:35:43.230Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:35:43.241Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:36:26.464Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:36:26.473Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:36:26.532Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:36:26.543Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:36:26.569Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:37:50.380Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:37:50.392Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:37:50.433Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:37:50.445Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:37:50.465Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:37:57.494Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:37:57.505Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:37:57.543Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:37:57.553Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:37:57.572Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:39:30.208Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:39:30.219Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:39:30.320Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:39:30.326Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:39:30.354Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:39:58.895Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:39:58.902Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:39:58.966Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:39:58.986Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:39:59.012Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:49:03.794Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T19:49:03.804Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:49:03.854Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:49:03.860Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:49:03.876Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-05T19:49:18.932Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-05T19:49:35.359Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T19:49:49.782Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T19:49:49.783Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T19:49:49.783Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T19:51:21.388Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T19:51:21.388Z"}
+{"level":"info","message":"User logged in: eliz01_01@yahoo.com","timestamp":"2025-05-05T19:51:21.389Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:51:21.440Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:51:21.444Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T19:53:12.787Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T19:53:12.787Z"}
+{"level":"info","message":"User logged in: eliz01_01@yahoo.com","timestamp":"2025-05-05T19:53:12.787Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:53:12.846Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-05T19:53:12.872Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-05T20:00:00.031Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T20:03:43.041Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T20:03:43.043Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T20:03:43.884Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T20:04:07.907Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T20:04:07.908Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T20:04:07.909Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:05:01.085Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:05:01.098Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T20:07:00.214Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T20:07:00.217Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T20:07:01.171Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:07:04.146Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:07:04.163Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T20:07:10.526Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T20:07:10.527Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T20:07:10.527Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T20:15:59.102Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T20:15:59.103Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T20:15:59.915Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:15:59.946Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:15:59.960Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T20:16:06.823Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T20:16:06.823Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T20:16:06.823Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T20:25:39.100Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T20:25:39.101Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T20:25:39.949Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:26:03.986Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:26:04.008Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:26:04.630Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:26:04.643Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:26:59.595Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:26:59.609Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:27:28.200Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:27:28.212Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T20:30:12.226Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T20:30:12.228Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T20:30:13.252Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:30:53.352Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:30:53.363Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:56:35.774Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T20:56:35.788Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-05T21:00:00.096Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:05:50.924Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:05:50.932Z"}
+{"level":"warn","message":"Login attempt failed: User not found - eliz01_01@yahoo.com","timestamp":"2025-05-05T21:06:42.295Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:08:32.581Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:08:32.586Z"}
+{"level":"warn","message":"Login attempt failed: User not found - eliz01_01@yahoo.com","timestamp":"2025-05-05T21:09:23.253Z"}
+{"level":"warn","message":"Login attempt failed: User not found - eliz01_01@yahoo.com","timestamp":"2025-05-05T21:10:25.594Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T21:11:48.884Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T21:11:48.885Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T21:11:48.885Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-05T21:11:50.225Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-05T21:15:54.820Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-05T21:15:54.820Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-05T21:15:54.820Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:18:44.039Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:18:44.046Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T21:43:27.486Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T21:43:27.487Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T21:43:27.847Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:43:58.396Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:43:58.406Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:49:26.633Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:49:26.639Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:49:34.357Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:49:34.364Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:50:45.575Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:50:45.581Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-05T21:52:00.719Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-05T21:52:00.720Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-05T21:52:01.011Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:52:08.531Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:52:08.541Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:53:08.823Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:53:08.831Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:53:24.121Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:53:24.127Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:54:58.101Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-05T21:54:58.107Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-06T12:53:53.675Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-06T12:53:53.676Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-06T12:53:54.066Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-06T12:54:41.533Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-06T12:54:41.534Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-06T12:54:41.534Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T12:55:02.384Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T12:55:02.391Z"}
+{"level":"info","message":"Fetched 0 recipes","timestamp":"2025-05-06T12:55:42.746Z"}
+{"level":"info","message":"Fetched 0 recipes","timestamp":"2025-05-06T12:55:42.750Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T12:56:27.715Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T12:56:27.725Z"}
+{"level":"warn","message":"Login attempt failed: User not found - eliz01_01@yahoo.com","timestamp":"2025-05-06T12:56:59.430Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T12:57:13.290Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T12:57:13.298Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-06T13:00:00.271Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-06T13:03:09.540Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-06T13:03:09.541Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-06T13:03:09.895Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:06:09.856Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:06:09.864Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:06:09.898Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:06:09.951Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:06:09.962Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:06:18.424Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:06:18.429Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:06:18.457Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:06:18.510Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:06:18.514Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:08:15.074Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:08:15.080Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:08:21.785Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:08:21.791Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:08:21.819Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:08:21.831Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:08:21.833Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-06T13:08:29.475Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-06T13:08:36.290Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-06T13:08:36.290Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-06T13:08:36.291Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:08:43.587Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:08:43.593Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:08:51.527Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:08:51.535Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-06T13:09:25.622Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:09:29.540Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:09:29.546Z"}
+{"level":"warn","message":"NODE_ENV is not set! Please ensure it is properly configured.","timestamp":"2025-05-06T13:09:35.053Z"}
+{"level":"info","message":"Refresh token cookie set successfully in development.","timestamp":"2025-05-06T13:09:35.053Z"}
+{"level":"info","message":"User logged in: funmi4universe@yahoo.com","timestamp":"2025-05-06T13:09:35.053Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:14:18.683Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:14:18.689Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:14:28.453Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:14:28.459Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:16:27.447Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:16:27.453Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:16:27.500Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:16:27.504Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:16:27.511Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:16:39.811Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T13:16:39.815Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:16:39.833Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:16:39.840Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:16:39.855Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:21:28.211Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T13:21:28.216Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-06T14:07:15.344Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-06T14:07:15.345Z"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-05-06T14:07:15.665Z"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-05-06T14:07:24.791Z"}
+{"level":"info","message":"Attempting to fetch all categories","timestamp":"2025-05-06T14:07:24.791Z"}
+{"level":"info","message":"Fetched all categories successfully","timestamp":"2025-05-06T14:07:24.798Z"}
+{"level":"info","message":"Categories fetched successfully","timestamp":"2025-05-06T14:07:24.798Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T14:07:24.801Z"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-05-06T14:07:24.806Z"}
+{"level":"info","message":"Attempting to fetch all categories","timestamp":"2025-05-06T14:07:24.806Z"}
+{"level":"info","message":"Fetched all categories successfully","timestamp":"2025-05-06T14:07:24.809Z"}
+{"level":"info","message":"Categories fetched successfully","timestamp":"2025-05-06T14:07:24.810Z"}
+{"level":"info","message":"Fetched 4 recipes","timestamp":"2025-05-06T14:07:24.811Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.869Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.872Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.872Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.873Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.879Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.880Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.881Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.881Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.884Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.885Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.885Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.886Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.889Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.890Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.891Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.891Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.894Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.895Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.896Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.897Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.900Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.901Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.901Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.902Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.904Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.905Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.905Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.906Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.910Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.911Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.911Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.912Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.916Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.917Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.917Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.917Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.920Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.921Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.921Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.922Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.924Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.925Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.925Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.926Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.929Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.930Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.930Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.930Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.933Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.934Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.934Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.934Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.937Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.938Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.938Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.938Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.941Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.942Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.942Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.943Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.947Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.948Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:24.948Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:24.949Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:54.520Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:54.521Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T14:07:54.526Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:54.531Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:54.532Z"}
+{"level":"info","message":"Fetched data for user ID: 1","timestamp":"2025-05-06T14:07:54.533Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:54.548Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:54.549Z"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-05-06T14:07:54.557Z"}
+{"level":"info","message":"Attempting to fetch all categories","timestamp":"2025-05-06T14:07:54.557Z"}
+{"level":"info","message":"Fetched all categories successfully","timestamp":"2025-05-06T14:07:54.563Z"}
+{"level":"info","message":"Categories fetched successfully","timestamp":"2025-05-06T14:07:54.563Z"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-05-06T14:07:54.566Z"}
+{"level":"info","message":"Attempting to fetch all categories","timestamp":"2025-05-06T14:07:54.566Z"}
+{"level":"info","message":"Fetched all categories successfully","timestamp":"2025-05-06T14:07:54.567Z"}
+{"level":"info","message":"Categories fetched successfully","timestamp":"2025-05-06T14:07:54.568Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:07:54.568Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:07:54.569Z"}
+{"level":"info","message":"Fetched recipe with ID: 6","timestamp":"2025-05-06T14:07:54.594Z"}
+{"level":"info","message":"Fetched recipe with ID: 6","timestamp":"2025-05-06T14:07:54.603Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:08:05.378Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:08:05.378Z"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-05-06T14:08:05.380Z"}
+{"level":"info","message":"Attempting to fetch all categories","timestamp":"2025-05-06T14:08:05.380Z"}
+{"level":"info","message":"Fetched all categories successfully","timestamp":"2025-05-06T14:08:05.380Z"}
+{"level":"info","message":"Categories fetched successfully","timestamp":"2025-05-06T14:08:05.380Z"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-05-06T14:08:05.385Z"}
+{"level":"info","message":"Attempting to fetch all categories","timestamp":"2025-05-06T14:08:05.385Z"}
+{"level":"info","message":"Fetched all categories successfully","timestamp":"2025-05-06T14:08:05.387Z"}
+{"level":"info","message":"Categories fetched successfully","timestamp":"2025-05-06T14:08:05.387Z"}
+{"level":"info","message":"Request received for authentication","timestamp":"2025-05-06T14:08:05.388Z"}
+{"level":"info","message":"Token successfully verified","timestamp":"2025-05-06T14:08:05.389Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-06T15:00:00.269Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-06T16:00:00.514Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-07T07:00:00.444Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-07T08:00:00.975Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-07T09:00:00.181Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-07T10:00:00.488Z"}
+{"level":"warn","message":"Expired tokens cleaned up.","timestamp":"2025-05-07T11:00:00.069Z"}
