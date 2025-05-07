@@ -1,0 +1,22 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore .env file containing sensitive data
+.env
+
+# Ignore log files
+*.log
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore npm debug log files
+npm-debug.log*
+
+package-lock.json
+
+*.py
+
+/certs/
+.qodo
+backend/cert/
