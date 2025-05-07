@@ -3,6 +3,8 @@ node_modules/
 
 # Ignore .env file containing sensitive data
 .env
+.env.local
+.env.production
 
 # Ignore log files
 *.log
