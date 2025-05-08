@@ -10,7 +10,6 @@ const markUserAsVerified = async (userId) => {
   return result;
 };
 
-
 export const verifyEmail = async (req, res) => {
   const { token } = req.query;
   console.log("Received token in backend:", token);
