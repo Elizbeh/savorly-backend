@@ -805,3 +805,19 @@
 {"level":"info","message":"Routes initialized","timestamp":"2025-05-08T00:23:48.161Z"}
 {"level":"info","message":"🚀 Server running on port 5000 (production)","timestamp":"2025-05-08T00:23:48.307Z"}
 {"level":"info","message":"✅ Database connected successfully (production)","timestamp":"2025-05-08T00:23:50.830Z"}
+{"DB_HOST":"gateway01.us-west-2.prod.aws.tidbcloud.com","DB_NAME":"test","DB_PORT":"4000","DB_USER":"2zAXCKjBvUbSM4i.root","level":"info","message":"Loaded DB config for production","timestamp":"2025-05-08T01:00:25.333Z"}
+{"level":"info","message":"✅ SSL certificate loaded for production DB connection","timestamp":"2025-05-08T01:00:25.336Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-08T01:00:29.176Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-08T01:00:29.177Z"}
+{"level":"info","message":"🚀 Server running on port 5000 (production)","timestamp":"2025-05-08T01:00:29.339Z"}
+{"level":"info","message":"✅ Database connected successfully (production)","timestamp":"2025-05-08T01:00:33.854Z"}
+{"DB_HOST":"gateway01.us-west-2.prod.aws.tidbcloud.com","DB_NAME":"test","DB_PORT":"4000","DB_USER":"2zAXCKjBvUbSM4i.root","level":"info","message":"Loaded DB config for production","timestamp":"2025-05-08T01:15:50.826Z"}
+{"level":"info","message":"✅ SSL certificate loaded for production DB connection","timestamp":"2025-05-08T01:15:50.828Z"}
+{"level":"info","message":"Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser","timestamp":"2025-05-08T01:15:54.154Z"}
+{"level":"info","message":"Routes initialized","timestamp":"2025-05-08T01:15:54.155Z"}
+{"level":"info","message":"🚀 Server running on port 5000 (production)","timestamp":"2025-05-08T01:15:54.296Z"}
+{"level":"info","message":"✅ Database connected successfully (production)","timestamp":"2025-05-08T01:15:57.104Z"}
+{"DB_HOST":"localhost","DB_NAME":"savorly_db","DB_PORT":"3306","DB_USER":"root","level":"info","message":"Loaded DB config for undefined","timestamp":"2025-05-08T01:31:19.455Z"}
+{"level":"error","message":"❌ Database connection failed (undefined) Pool is closed.","stack":"Error: Pool is closed.\n    at C:\\Users\\eliz0\\OneDrive\\Bureau\\Savorly\\backend\\node_modules\\mysql2\\lib\\base\\pool.js:55:21\n    at PoolConnection.<anonymous> (C:\\Users\\eliz0\\OneDrive\\Bureau\\Savorly\\backend\\node_modules\\mysql2\\lib\\base\\connection.js:816:13)\n    at Object.onceWrapper (node:events:639:26)\n    at PoolConnection.emit (node:events:536:35)\n    at PoolConnection._notifyError (C:\\Users\\eliz0\\OneDrive\\Bureau\\Savorly\\backend\\node_modules\\mysql2\\lib\\base\\connection.js:247:12)\n    at ClientHandshake.<anonymous> (C:\\Users\\eliz0\\OneDrive\\Bureau\\Savorly\\backend\\node_modules\\mysql2\\lib\\base\\connection.js:141:14)\n    at ClientHandshake.emit (node:events:536:35)\n    at ClientHandshake.execute (C:\\Users\\eliz0\\OneDrive\\Bureau\\Savorly\\backend\\node_modules\\mysql2\\lib\\commands\\command.js:39:14)\n    at PoolConnection.handlePacket (C:\\Users\\eliz0\\OneDrive\\Bureau\\Savorly\\backend\\node_modules\\mysql2\\lib\\base\\connection.js:475:34)\n    at PacketParser.onPacket (C:\\Users\\eliz0\\OneDrive\\Bureau\\Savorly\\backend\\node_modules\\mysql2\\lib\\base\\connection.js:93:12)","timestamp":"2025-05-08T01:31:19.518Z"}
+{"DB_HOST":"localhost","DB_NAME":"savorly_db","DB_PORT":"3306","DB_USER":"root","level":"info","message":"Loaded DB config for undefined","timestamp":"2025-05-08T01:35:05.168Z"}
+{"level":"info","message":"✅ Database connected successfully (undefined)","timestamp":"2025-05-08T01:35:05.416Z"}
