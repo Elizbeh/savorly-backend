@@ -5,18 +5,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import logger from '../config/logger.js';
 
-// Define __dirname in ES module scope
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load the appropriate .env file based on NODE_ENV
 const envPath = process.env.NODE_ENV === 'production'
   ? path.resolve(__dirname, '../.env.production')
   : path.resolve(__dirname, '../.env.local');
 
 dotenv.config({ path: envPath });
 
-// Log database credentials (omit password in logs)
 logger.info(`Loaded DB config for ${process.env.NODE_ENV}`, {
   DB_HOST: process.env.DB_HOST,
   DB_USER: process.env.DB_USER,
@@ -24,7 +21,6 @@ logger.info(`Loaded DB config for ${process.env.NODE_ENV}`, {
   DB_PORT: process.env.DB_PORT || '3306',
 });
 
-// MySQL connection pool configuration
 const poolConfig = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT || 3306,
@@ -34,14 +30,17 @@ const poolConfig = {
   charset: 'utf8mb4',
   waitForConnections: true,
   connectTimeout: 30000,
+  ssl: {
+    rejectUnauthorized: true
+  }
 };
 
-// Add SSL configuration in production
 if (process.env.NODE_ENV === 'production') {
   try {
+    const caPath = path.resolve(__dirname, '../config/isrgrootx1.pem');
     poolConfig.ssl = {
-      rejectUnauthorized: true,
-      ca: fs.readFileSync(path.resolve(__dirname, '../config/isrgrootx1.pem')),
+      ...poolConfig.ssl,
+      ca: fs.readFileSync(caPath),
     };
     logger.info('✅ SSL certificate loaded for production DB connection');
   } catch (err) {
@@ -52,10 +51,8 @@ if (process.env.NODE_ENV === 'production') {
   }
 }
 
-// Create the connection pool
 const pool = mysql.createPool(poolConfig).promise();
 
-// Test database connection in all environments
 const testConnection = async () => {
   try {
     const conn = await pool.getConnection();
