@@ -1,4 +1,3 @@
-// cronJob.js
 import cron from 'node-cron';
 import db from './config/db.js';
 
