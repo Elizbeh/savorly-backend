@@ -7,11 +7,10 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import jwt from 'jsonwebtoken';
-
 import authRoutes from './routes/authRoutes.js';
 import recipeRoutes from './routes/recipesRoutes.js';
-import categoryRoutes from './routes/categoryRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import { router as savedRecipesRoutes } from './routes/savedRecipesRoutes.js';
 import { authenticate } from './middleware/authenticate.js';
@@ -25,11 +24,20 @@ if (!process.env.JWT_SECRET) {
 const app = express();
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: function (origin, callback) {
+    const allowedOrigins = ['http://localhost:5174', 'https://elizbeh.github.io'];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Authorization', 'Content-Type', 'Cache-Control', 'Origin', 'Accept'],
 };
+
+
 
 app.use(cors(corsOptions));
 app.use(helmet());
