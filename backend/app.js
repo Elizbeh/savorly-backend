@@ -24,8 +24,14 @@ if (!process.env.JWT_SECRET) {
 const app = express();
 
 const corsOptions = {
-  origin: 'https://elizbeh.github.io/savorly-frontend',
-    
+  origin: function (origin, callback) {
+    const allowedOrigins =  'https://elizbeh.github.io/savorly-frontend';
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Authorization', 'Content-Type', 'Cache-Control', 'Origin', 'Accept'],
   credentials: true,
