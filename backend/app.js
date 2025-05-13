@@ -25,11 +25,22 @@ if (!process.env.JWT_SECRET) {
 const app = express();
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'https://elizbeh.github.io', 
+      'https://elizbeh.github.io/savorly-frontend'
+    ];
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Authorization', 'Content-Type', 'Cache-Control', 'Origin', 'Accept'],
 };
+
 
 app.use(cors(corsOptions));
 app.use(helmet());
