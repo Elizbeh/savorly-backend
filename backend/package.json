@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "migrate": "node ./migrations/runMigrations.js",
-    "dev": "node server.js",
+    "start": "node server.js",
     "test": "jest --watch",
     "test:unit": "jest --watch --testPathPattern=tests/unit",
     "test:integration": "jest --watch --testPathPattern=tests/integration"

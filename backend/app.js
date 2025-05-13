@@ -7,11 +7,10 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import jwt from 'jsonwebtoken';
-
 import authRoutes from './routes/authRoutes.js';
 import recipeRoutes from './routes/recipesRoutes.js';
-import categoryRoutes from './routes/categoryRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import { router as savedRecipesRoutes } from './routes/savedRecipesRoutes.js';
 import { authenticate } from './middleware/authenticate.js';
