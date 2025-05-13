@@ -25,7 +25,11 @@ const app = express();
 
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = ['http://localhost:5174', 'https://elizbeh.github.io/savorly-frontend'];
+    const allowedOrigins = [
+      process.env.VITE_CLIENT_URL,
+      'http://localhost:5174'
+    ];
+
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -39,7 +43,7 @@ const corsOptions = {
 
 
 
-app.use(cors(corsOptions));
+app.use('*', cors(corsOptions));
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
