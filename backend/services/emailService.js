@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import logger from '../config/logger.js'; // Adjust path as needed
+import logger from '../config/logger.js';
 
 export const sendEmail = (to, first_name, verificationUrl) => {
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
