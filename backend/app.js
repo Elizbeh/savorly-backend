@@ -7,10 +7,11 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import jwt from 'jsonwebtoken';
+
 import authRoutes from './routes/authRoutes.js';
 import recipeRoutes from './routes/recipesRoutes.js';
-import adminRoutes from './routes/adminRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import { router as savedRecipesRoutes } from './routes/savedRecipesRoutes.js';
 import { authenticate } from './middleware/authenticate.js';
@@ -24,19 +25,11 @@ if (!process.env.JWT_SECRET) {
 const app = express();
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    const allowedOrigins =  'https://elizbeh.github.io/savorly-frontend';
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: process.env.CLIENT_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Authorization', 'Content-Type', 'Cache-Control', 'Origin', 'Accept'],
   credentials: true,
+  allowedHeaders: ['Authorization', 'Content-Type', 'Cache-Control', 'Origin', 'Accept'],
 };
-
 
 app.use(cors(corsOptions));
 app.use(helmet());
