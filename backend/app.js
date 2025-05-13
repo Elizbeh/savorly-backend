@@ -25,7 +25,7 @@ const app = express();
 
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = ['http://localhost:5174', 'https://elizbeh.github.io'];
+    const allowedOrigins = ['http://localhost:5174', 'https://elizbeh.github.io/savorly-frontend'];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
