@@ -9,6 +9,7 @@ app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
 
+
 /*// Load SSL cert and key
 const key = fs.readFileSync('./cert/key.pem');
 const cert = fs.readFileSync('./cert/cert.pem');
