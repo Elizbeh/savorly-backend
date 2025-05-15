@@ -29,6 +29,7 @@ const corsOptions = {
       process.env.CLIENT_URL, // Correct var name
       'http://localhost:5174'
     ];
+    console.log('Incoming Origin:', origin);
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {

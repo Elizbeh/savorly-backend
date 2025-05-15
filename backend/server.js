@@ -1,4 +1,4 @@
-import 'dotenv/config'; // Load environment variables
+import 'dotenv/config';
 import fs from 'fs';
 import https from 'https';
 import app from './app.js';
