@@ -25,8 +25,7 @@ const app = express();
 
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = [
-      process.env.CLIENT_URL, // Correct var name
+    const allowedOrigins = ['https://elizbeh.github.io',
       'http://localhost:5174'
     ];
     console.log('Incoming Origin:', origin);
