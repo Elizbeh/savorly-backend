@@ -16,7 +16,7 @@ node_modules/
 npm-debug.log*
 
 # Ignore lock files
-package-lock.json
+
 
 # Ignore Python files
 *.py
@@ -24,4 +24,4 @@ package-lock.json
 # Ignore certs and custom local files
 /certs/
 .qodo
-backend/cert/
+cert/
