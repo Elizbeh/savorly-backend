@@ -1,6 +1,4 @@
 import dotenv from 'dotenv';
-dotenv.config();
-
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -16,6 +14,11 @@ import { router as savedRecipesRoutes } from './routes/savedRecipesRoutes.js';
 import { authenticate } from './middleware/authenticate.js';
 import logger from './config/logger.js';
 
+
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
+dotenv.config({ path: path.resolve(process.cwd(), envFile) });
+
+
 if (!process.env.JWT_SECRET) {
   logger.error("JWT_SECRET is missing in environment variables!");
   throw new Error("JWT_SECRET is missing in environment variables!");
@@ -23,16 +26,21 @@ if (!process.env.JWT_SECRET) {
 
 const app = express();
 
+const allowedOrigins = [
+   ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL] : []),
+  'https://localhost:5173',
+  'https://localhost:5174',
+];
+
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = ['https://elizbeh.github.io',
-      'http://localhost:5174'
-    ];
     console.log('Incoming Origin:', origin);
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin) {
+      callback(null, true);
+    } else if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

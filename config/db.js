@@ -1,33 +1,39 @@
 import mysql from 'mysql2';
 import 'dotenv/config';
-import logger from '../config/logger.js'; // Adjust the path if needed
+import logger from '../config/logger.js';
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-   ssl: {
-    rejectUnauthorized: true
-  },
-  charset: 'utf8mb4',
-  waitForConnections: true,
-  connectTimeout: 30000,
-}).promise();
+const isProd = process.env.NODE_ENV === 'production';
 
-// Optional: use this for testing DB connection during development only
-if (process.env.NODE_ENV !== 'production') {
-  const testConnection = async () => {
+const pool = mysql
+  .createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    // use SSL only for prod
+    ...(isProd && {
+      ssl: {
+        // with TiDB Cloud you usually just need this flag
+        rejectUnauthorized: true,
+      },
+    }),
+    charset: 'utf8mb4',
+    waitForConnections: true,
+    connectTimeout: 30_000,
+  })
+  .promise();
+
+// quick connection check in dev
+if (!isProd) {
+  (async () => {
     try {
-      const connection = await pool.getConnection();
+      const conn = await pool.getConnection();
       logger.info('Database connected successfully');
-      connection.release();
+      conn.release();
     } catch (err) {
       logger.error('Database connection error', { message: err.message, stack: err.stack });
     }
-  };
-
-  testConnection();
+  })();
 }
 
 export default pool;
