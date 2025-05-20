@@ -36,11 +36,13 @@ const corsOptions = {
   origin: function (origin, callback) {
     console.log('Incoming Origin:', origin);
     if (!origin) {
+      // Allow non-browser requests like curl or server-to-server calls
       callback(null, true);
     } else if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error(`Origin ${origin} not allowed by CORS`));
+      console.warn(`Origin ${origin} not allowed by CORS`);
+      callback(null, false);
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -65,6 +67,7 @@ app.use('/uploads', (req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 }, express.static(path.join(process.cwd(), 'uploads')));
+
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -107,5 +110,12 @@ app.post('/test-token', (req, res) => {
 app.get('/', (req, res) => {
   res.send('Savorly API is running!');
 });
+
+app.get('/test-origin', (req, res) => {
+  const originHeader = req.get('Origin');
+  logger.info('Received request from Origin:', originHeader);
+  res.json({ origin: originHeader });
+});
+
 
 export default app;
