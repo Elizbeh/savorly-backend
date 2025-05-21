@@ -1,6 +1,6 @@
 import express from 'express';
 import { getUserProfile, updateUserProfile, uploadAvatar } from '../controllers/profileController.js'; // Importing the necessary functions from profileController
-import upload from '../middleware/upload.js'; // Middleware for handling file uploads
+import upload from '../middleware/upload.js';
 
 const router = express.Router();
 

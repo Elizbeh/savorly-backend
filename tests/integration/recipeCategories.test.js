@@ -1,5 +1,5 @@
-import pool from '../../config/db';  // Make sure to import the pool instance for database access
-import { describe, beforeAll, afterAll, test, expect } from '@jest/globals';  // Import Jest functions
+import pool from '../../config/db';
+import { describe, beforeAll, afterAll, test, expect } from '@jest/globals';
 
 
 describe('Recipe-Categories Model', () => {

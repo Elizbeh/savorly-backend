@@ -26,7 +26,7 @@ const seedDatabase = async () => {
                 first_name: 'John',
                 last_name: 'Doe',
                 email: 'john@example.com',
-                password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456' // Example hashed password
+                password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456'
             },
             {
                 id: 2,

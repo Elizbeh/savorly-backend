@@ -1,6 +1,6 @@
 import request from 'supertest';
-import app from '../../app';  // Assuming 'app' is your Express app instance
-import pool from '../../config/db';  // Database connection
+import app from '../../app';
+import pool from '../../config/db';
 
 // Clean up the database before and after tests
 beforeAll(async () => {
@@ -10,7 +10,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await pool.end();  // Close the database connection after all tests
+  await pool.end();
 });
 
 describe('Recipe CRUD Tests', () => {
@@ -39,7 +39,7 @@ describe('Recipe CRUD Tests', () => {
       .set('Authorization', `Bearer ${token}`)
       .send(recipeData);
 
-    expect(response.status).toBe(201);  // HTTP status 201 Created
+    expect(response.status).toBe(201); 
     expect(response.body).toHaveProperty('title', recipeData.title);
     expect(response.body).toHaveProperty('description', recipeData.description);
   });
@@ -48,7 +48,7 @@ describe('Recipe CRUD Tests', () => {
   it('should fetch all recipes', async () => {
     const response = await request(app).get('/api/recipes');
 
-    expect(response.status).toBe(200);  // HTTP status 200 OK
+    expect(response.status).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
   });
 
@@ -67,7 +67,7 @@ describe('Recipe CRUD Tests', () => {
 
     const response = await request(app).get(`/api/recipes/${recipeId}`);
 
-    expect(response.status).toBe(200);  // HTTP status 200 OK
+    expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('id', recipeId);
     expect(response.body).toHaveProperty('title', recipeData.title);
   });
@@ -91,7 +91,7 @@ describe('Recipe CRUD Tests', () => {
       .put(`/api/recipes/${recipeId}`)
       .send(updatedData);
 
-    expect(response.status).toBe(200);  // HTTP status 200 OK
+    expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('title', updatedData.title);
   });
 
@@ -110,7 +110,7 @@ describe('Recipe CRUD Tests', () => {
 
     const response = await request(app).delete(`/api/recipes/${recipeId}`);
 
-    expect(response.status).toBe(200);  // HTTP status 200 OK
+    expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('message', 'Recipe deleted successfully');
   });
 });

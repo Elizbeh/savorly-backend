@@ -34,7 +34,7 @@ describe('User Authentication Tests', () => {
       .post('/api/auth/register')
       .send(userData);
 
-    expect(response.status).toBe(201);  // HTTP status 201 Created
+    expect(response.status).toBe(201);
     expect(response.body).toHaveProperty('email', userData.email);
     expect(response.body).toHaveProperty('first_name', userData.first_name);
   });
@@ -50,7 +50,7 @@ describe('User Authentication Tests', () => {
       .post('/api/auth/login')
       .send(loginData);
 
-    expect(response.status).toBe(200);  // HTTP status 200 OK
+    expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('token');  // Expect a token on login
   });
 
@@ -65,7 +65,7 @@ describe('User Authentication Tests', () => {
       .post('/api/auth/login')
       .send(loginData);
 
-    expect(response.status).toBe(401);  // Unauthorized
+    expect(response.status).toBe(401); 
     expect(response.body).toHaveProperty('message', 'Invalid credentials');
   });
 });

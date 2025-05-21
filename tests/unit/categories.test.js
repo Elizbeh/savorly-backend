@@ -6,7 +6,7 @@ jest.mock('../../config/db.js');
 describe('Category Model Tests', () => {
 
   beforeAll(() => {
-    // Mock initial queries if necessary
+    // Mock initial queries
     pool.query.mockResolvedValue([]);
   });
 

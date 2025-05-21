@@ -21,7 +21,7 @@ import { addRatingToRecipe } from '../models/ratings.js';
 import pool from '../config/db.js';
 import cloudinary from '../config/cloudinaryConfig.js';
 import streamifier from 'streamifier';
-import logger from '../config/logger.js'; // Assuming logger is in utils/logger.js
+import logger from '../config/logger.js';
 
 // Create a new recipe
 export const createRecipe = async (req, res) => {
@@ -29,22 +29,22 @@ export const createRecipe = async (req, res) => {
   const userId = req.user.id;
 
   if (!title || !description) {
-    logger.warn('Title or description missing');  // Log a warning if required fields are missing
+    logger.warn('Title or description missing');
     return res.status(400).json({ message: 'Title and description are required' });
   }
 
   try {
     const handleCreation = async (imageUrl) => {
-      logger.info('Creating recipe with title: ' + title);  // Log the recipe creation attempt
+      logger.info('Creating recipe with title: ' + title);
       const recipe = await create({ title, description, userId, imageUrl, prepTime, cookTime, calories });
 
       if (ingredients?.length) {
         await addIngredientsToRecipe(recipe.id, ingredients);
-        logger.info('Ingredients added to recipe ID: ' + recipe.id);  // Log ingredients addition
+        logger.info('Ingredients added to recipe ID: ' + recipe.id);
       }
       if (categories?.length) {
         await addCategoriesToRecipe(recipe.id, categories);
-        logger.info('Categories added to recipe ID: ' + recipe.id);  // Log categories addition
+        logger.info('Categories added to recipe ID: ' + recipe.id);
       }
 
       const fullRecipe = {
@@ -54,7 +54,7 @@ export const createRecipe = async (req, res) => {
         comments: await getCommentsForRecipe(recipe.id),
       };
 
-      logger.info('Recipe created successfully with ID: ' + recipe.id);  // Log success
+      logger.info('Recipe created successfully with ID: ' + recipe.id);
       res.status(201).json(fullRecipe);
     };
 
@@ -63,7 +63,7 @@ export const createRecipe = async (req, res) => {
         { folder: 'recipe_images', resource_type: 'image' },
         async (error, result) => {
           if (error) {
-            logger.error('Image upload failed: ' + error.message);  // Log error if image upload fails
+            logger.error('Image upload failed: ' + error.message);
             return res.status(500).json({ message: 'Image upload failed', error });
           }
           await handleCreation(result.secure_url);
@@ -74,7 +74,7 @@ export const createRecipe = async (req, res) => {
       await handleCreation(null);
     }
   } catch (error) {
-    logger.error('Error creating recipe: ' + error.message);  // Log error if recipe creation fails
+    logger.error('Error creating recipe: ' + error.message); 
     res.status(500).json({ message: 'Error creating recipe', error: error.message });
   }
 };
@@ -85,20 +85,20 @@ export const updateRecipe = async (req, res) => {
   const { title, description, prepTime, cookTime, calories } = req.body;
 
   if (!id || !title || !description) {
-    logger.warn('ID, title, or description missing for update');  // Log a warning if required fields are missing
+    logger.warn('ID, title, or description missing for update');
     return res.status(400).json({ message: 'ID, title, and description are required' });
   }
 
   try {
     const performUpdate = async (imageUrl) => {
-      logger.info('Updating recipe with ID: ' + id);  // Log the update attempt
+      logger.info('Updating recipe with ID: ' + id);
       const success = await update({ id, title, description, imageUrl, prepTime, cookTime, calories });
 
       if (success) {
-        logger.info('Recipe updated successfully with ID: ' + id);  // Log success
+        logger.info('Recipe updated successfully with ID: ' + id);
         return res.status(200).json({ message: 'Recipe updated' });
       } else {
-        logger.error('Recipe update failed with ID: ' + id);  // Log failure
+        logger.error('Recipe update failed with ID: ' + id);
         return res.status(400).json({ message: 'Update failed' });
       }
     };
@@ -108,7 +108,7 @@ export const updateRecipe = async (req, res) => {
         { folder: 'recipe_images', resource_type: 'image' },
         async (error, result) => {
           if (error) {
-            logger.error('Image upload failed: ' + error.message);  // Log error if image upload fails
+            logger.error('Image upload failed: ' + error.message);
             return res.status(500).json({ message: 'Upload failed', error });
           }
           await performUpdate(result.secure_url);
@@ -119,7 +119,7 @@ export const updateRecipe = async (req, res) => {
       await performUpdate(null);
     }
   } catch (error) {
-    logger.error('Error updating recipe: ' + error.message);  // Log error if update fails
+    logger.error('Error updating recipe: ' + error.message);
     res.status(500).json({ message: 'Error updating recipe', error: error.message });
   }
 };
@@ -129,7 +129,7 @@ export const getRecipeById = async (req, res) => {
   try {
     const recipe = await findById(req.params.id);
     if (!recipe) {
-      logger.warn('Recipe not found with ID: ' + req.params.id);  // Log if recipe is not found
+      logger.warn('Recipe not found with ID: ' + req.params.id);
       return res.status(404).json({ message: 'Recipe not found' });
     }
 
@@ -139,10 +139,10 @@ export const getRecipeById = async (req, res) => {
       getCommentsForRecipe(recipe.id)
     ]);
 
-    logger.info('Fetched recipe with ID: ' + req.params.id);  // Log successful fetch
+    logger.info('Fetched recipe with ID: ' + req.params.id);
     res.status(200).json({ ...recipe, categories, ingredients, comments });
   } catch (err) {
-    logger.error('Error fetching recipe with ID: ' + req.params.id + ' - ' + err.message);  // Log error
+    logger.error('Error fetching recipe with ID: ' + req.params.id + ' - ' + err.message);
     res.status(500).json({ message: 'Error fetching recipe', error: err.message });
   }
 };
@@ -157,11 +157,11 @@ export const deleteRecipe = async (req, res) => {
     const recipe = rows[0];
 
     if (!recipe) {
-      logger.warn('Recipe not found with ID: ' + recipeId);  // Log if recipe is not found
+      logger.warn('Recipe not found with ID: ' + recipeId);
       return res.status(404).json({ message: 'Recipe not found' });
     }
     if (recipe.user_id !== userId) {
-      logger.warn('Unauthorized attempt to delete recipe with ID: ' + recipeId);  // Log unauthorized attempts
+      logger.warn('Unauthorized attempt to delete recipe with ID: ' + recipeId);
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
@@ -170,7 +170,7 @@ export const deleteRecipe = async (req, res) => {
       if (publicId) {
         cloudinary.v2.uploader.destroy(publicId, (err) => {
           if (err) {
-            logger.error('Failed to delete image from cloudinary: ' + err.message);  // Log if image deletion fails
+            logger.error('Failed to delete image from cloudinary: ' + err.message);
           }
         });
       }
@@ -178,14 +178,14 @@ export const deleteRecipe = async (req, res) => {
 
     const success = await remove(recipeId);
     if (success) {
-      logger.info('Successfully deleted recipe with ID: ' + recipeId);  // Log successful deletion
+      logger.info('Successfully deleted recipe with ID: ' + recipeId);
       res.status(200).json({ message: 'Deleted successfully' });
     } else {
-      logger.error('Failed to delete recipe with ID: ' + recipeId);  // Log if deletion fails
+      logger.error('Failed to delete recipe with ID: ' + recipeId);
       res.status(500).json({ message: 'Delete failed' });
     }
   } catch (error) {
-    logger.error('Error deleting recipe with ID: ' + recipeId + ' - ' + error.message);  // Log error during deletion
+    logger.error('Error deleting recipe with ID: ' + recipeId + ' - ' + error.message);
     res.status(500).json({ message: 'Delete error', error: error.message });
   }
 };
@@ -203,16 +203,16 @@ export const addCommentToRecipeHandler = async (req, res) => {
   const userId = req.user.id;
 
   if (!comment) {
-    logger.warn('Comment missing');  // Log a warning if the comment is missing
+    logger.warn('Comment missing');
     return res.status(400).json({ message: 'Comment is required' });
   }
 
   try {
     await addCommentToRecipe(id, userId, comment);
-    logger.info('Comment added to recipe ID: ' + id);  // Log successful comment addition
+    logger.info('Comment added to recipe ID: ' + id);
     res.status(201).json({ message: 'Comment added' });
   } catch (err) {
-    logger.error('Failed to add comment to recipe ID: ' + id + ' - ' + err.message);  // Log error if comment fails
+    logger.error('Failed to add comment to recipe ID: ' + id + ' - ' + err.message);
     res.status(500).json({ message: 'Failed to add comment', error: err.message });
   }
 };
@@ -224,16 +224,16 @@ export const addRatingToRecipeHandler = async (req, res) => {
   const userId = req.user.id;
 
   if (!ratings || isNaN(ratings) || ratings < 1 || ratings > 5) {
-    logger.warn('Invalid rating value for recipe ID: ' + id);  // Log invalid rating
+    logger.warn('Invalid rating value for recipe ID: ' + id);
     return res.status(400).json({ message: 'Rating must be 1-5' });
   }
 
   try {
     await addRatingToRecipe(id, userId, ratings);
-    logger.info('Rating added to recipe ID: ' + id);  // Log successful rating addition
+    logger.info('Rating added to recipe ID: ' + id);
     res.status(201).json({ message: 'Rating added' });
   } catch (err) {
-    logger.error('Failed to add rating to recipe ID: ' + id + ' - ' + err.message);  // Log error if rating fails
+    logger.error('Failed to add rating to recipe ID: ' + id + ' - ' + err.message);
     res.status(500).json({ message: 'Failed to add rating', error: err.message });
   }
 };

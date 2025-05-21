@@ -28,7 +28,7 @@ export const createUserProfile = async (profileData) => {
 export const getProfileByUserId = async (userId) => {
     const query = 'SELECT * FROM user_profiles WHERE user_id = ?';
     const [rows] = await pool.query(query, [userId]);
-    return rows[0]; // Return the first matching profile
+    return rows[0];
 };
 
 // Update profile (bio and avatar)

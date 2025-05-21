@@ -12,7 +12,7 @@ export const setRefreshTokenCookie = (res, refreshToken) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // Refresh token expiry (7 days)
     });
   
-    // Log when cookie is set (optional, use a logger in production instead of console.log)
+    // Log when cookie is set
     if (process.env.NODE_ENV === 'production') {
         logger.info('Refresh token cookie set successfully in production.');
     } else {

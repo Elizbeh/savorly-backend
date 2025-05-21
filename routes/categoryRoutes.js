@@ -6,10 +6,10 @@ import { isAdmin } from '../middleware/isAdmin.js';
 const router = express.Router();
 
 // Route to get all categories
-router.get('/', fetchCategories); // Fetch all categories using the controller
+router.get('/', fetchCategories);
 
 // Route to create a new category
-router.post('/', authenticate, isAdmin, createCategoryHandler); // Handle category creation
+router.post('/', authenticate, isAdmin, createCategoryHandler);
 
 router.get('/:id', fetchCategoryById);
 

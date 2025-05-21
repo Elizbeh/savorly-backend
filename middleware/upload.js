@@ -3,7 +3,7 @@ import path from 'path';
 
 // Define the file types and file size limits
 const fileTypes = /jpeg|jpg|png|gif/;
-const fileSizeLimit = 20 * 1024 * 1024; // 20MB
+const fileSizeLimit = 20 * 1024 * 1024;
 
 const storage = multer.memoryStorage();
 

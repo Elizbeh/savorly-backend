@@ -17,7 +17,7 @@ jest.mock('../../config/db.js', () => ({
 
 describe('Recipes Model', () => {
   afterEach(() => {
-    jest.clearAllMocks(); // Clear mocks after each test
+    jest.clearAllMocks();
   });
 
   it('should create a new recipe', async () => {

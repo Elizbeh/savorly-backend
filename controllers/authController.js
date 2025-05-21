@@ -37,7 +37,7 @@ export const registerUser = async (req, res) => {
             verification_token_expires_at: new Date(Date.now() + 3600000), // 1 hour
         });
 
-        const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${encodeURIComponent(verification_token)}`;
+        const verificationUrl = `${process.env.CLIENT_URL}/#/verify-email?token=${encodeURIComponent(verification_token)}`;
 
         await sendEmail(email, first_name, verificationUrl);
 
@@ -75,7 +75,7 @@ export const resendVerificationEmail = async (req, res) => {
         }
 
         const verificationToken = generateVerificationToken();
-        const tokenExpiration = new Date(Date.now() + 3600000); // 1 hour
+        const tokenExpiration = new Date(Date.now() + 3600000);
 
         await updateUserVerificationToken(user.id, verificationToken, tokenExpiration);
 

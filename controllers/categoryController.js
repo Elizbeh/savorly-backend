@@ -16,17 +16,17 @@ export const fetchCategories = async (req, res) => {
 export const createCategoryHandler = async (req, res) => {
   const { name } = req.body;
   if (!name) {
-    logger.warn('Name is required to create a category');  // Log warning if name is not provided
+    logger.warn('Name is required to create a category');
     return res.status(400).json({ message: 'Name is required' });
   }
 
   try {
-    logger.info(`Creating category with name: ${name}`);  // Log category creation request
+    logger.info(`Creating category with name: ${name}`);
     const category = await createCategory(name);
-    logger.info('Category created successfully');  // Log success
+    logger.info('Category created successfully');
     res.status(201).json(category);
   } catch (err) {
-    logger.error('Error creating category: ', err.message);  // Log error
+    logger.error('Error creating category: ', err.message);
     res.status(400).json({ message: err.message });
   }
 };
@@ -35,16 +35,16 @@ export const fetchCategoryById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    logger.info(`Fetching category with ID: ${id}`);  // Log the category fetch attempt
+    logger.info(`Fetching category with ID: ${id}`);
     const category = await getCategoryById(id);
     if (!category) {
-      logger.warn(`Category with ID: ${id} not found`);  // Log warning if category not found
+      logger.warn(`Category with ID: ${id} not found`);
       return res.status(404).json({ message: 'Category not found' });
     }
-    logger.info('Category fetched successfully');  // Log success
+    logger.info('Category fetched successfully');
     res.status(200).json(category);
   } catch (err) {
-    logger.error('Error fetching category: ', err.message);  // Log error
+    logger.error('Error fetching category: ', err.message);
     res.status(500).json({ message: 'Error fetching category' });
   }
 };

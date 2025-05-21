@@ -69,7 +69,7 @@ export const getUserByToken = async (token) => {
     try {
         const query = 'SELECT * FROM users WHERE verification_token = ? AND verification_token_expires_at > NOW()';
         const [users] = await pool.query(query, [token]);
-        return users.length > 0 ? users[0] : null;  // Fix: use users[0] instead of rows[0]
+        return users.length > 0 ? users[0] : null; 
     } catch (err) {
         logger.error('Error fetching user by token:', err);
         throw err;

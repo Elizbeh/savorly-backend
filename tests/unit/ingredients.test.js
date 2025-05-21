@@ -12,7 +12,7 @@ describe('Ingredient Model', () => {
   const ingredients = ['Salt', 'Pepper', 'Olive Oil'];
 
   beforeEach(() => {
-    jest.clearAllMocks(); // Clear any previous mock calls before each test
+    jest.clearAllMocks();
   });
 
   describe('addIngredientsToRecipe', () => {

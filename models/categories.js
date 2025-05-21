@@ -1,15 +1,15 @@
 import pool from '../config/db.js';
-import logger from '../config/logger.js'; // Assuming logger is in utils/logger.js
+import logger from '../config/logger.js';
 
-// Fetch all categories - just return data, don't send response here
+// Fetch all categories 
 export const getAllCategories = async () => {
   try {
-    logger.info('Attempting to fetch all categories');  // Log when the operation starts
+    logger.info('Attempting to fetch all categories');
     const [categories] = await pool.query('SELECT * FROM categories');
-    logger.info('Fetched all categories successfully');  // Log success
+    logger.info('Fetched all categories successfully');
     return categories; // Return the categories to the controller
   } catch (err) {
-    logger.error('Error fetching categories: ' + err.message);  // Log the error if the operation fails
+    logger.error('Error fetching categories: ' + err.message);
     throw new Error('Error fetching categories: ' + err.message);
   }
 };
@@ -17,12 +17,12 @@ export const getAllCategories = async () => {
 // Create a new category
 export const createCategory = async (name) => {
   try {
-    logger.info(`Attempting to create category with name: ${name}`);  // Log the category creation attempt
+    logger.info(`Attempting to create category with name: ${name}`);
     const [result] = await pool.query('INSERT INTO categories (name) VALUES (?)', [name]);
-    logger.info('Category created successfully with ID: ' + result.insertId);  // Log success
+    logger.info('Category created successfully with ID: ' + result.insertId);
     return { id: result.insertId, name };  // Return the created category
   } catch (err) {
-    logger.error('Error creating category: ' + err.message);  // Log error if creation fails
+    logger.error('Error creating category: ' + err.message);
     throw new Error('Error creating category: ' + err.message);
   }
 };
@@ -30,15 +30,15 @@ export const createCategory = async (name) => {
 // Fetch a category by ID
 export const getCategoryById = async (id) => {
   try {
-    logger.info(`Attempting to fetch category with ID: ${id}`);  // Log the fetch attempt
+    logger.info(`Attempting to fetch category with ID: ${id}`);
     const [category] = await pool.query('SELECT * FROM categories WHERE id = ?', [id]);
     if (category.length === 0) {
-      logger.warn(`No category found with ID: ${id}`);  // Log a warning if no category is found
+      logger.warn(`No category found with ID: ${id}`);
     }
-    logger.info('Fetched category successfully');  // Log success
-    return category[0] || null;  // Return the category or null if not found
+    logger.info('Fetched category successfully');
+    return category[0] || null;
   } catch (err) {
-    logger.error('Error fetching category by ID: ' + err.message);  // Log error if fetching fails
+    logger.error('Error fetching category by ID: ' + err.message);
     throw new Error('Error fetching category by ID: ' + err.message);
   }
 };

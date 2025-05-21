@@ -1,9 +1,6 @@
 import pool from '../config/db.js';
 
-// Add a comment to a recipe
-// Add a comment to a recipe
 export const addCommentToRecipe = async (recipeId, userId, comment) => {
-  // Remove 'req.body' reference since this function does not directly handle a request
   console.log("Adding comment to recipe:", { recipeId, userId, comment });
   
   // Validate the comment parameter
@@ -17,7 +14,6 @@ export const addCommentToRecipe = async (recipeId, userId, comment) => {
   }
 
   try {
-    // Assuming you have a 'pool' object to query your database
     const [result] = await pool.query(
       'INSERT INTO comments (recipe_id, user_id, comment) VALUES (?, ?, ?)',
       [recipeId, userId, comment]

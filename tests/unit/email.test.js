@@ -13,8 +13,8 @@ describe('sendEmail', () => {
 
   // Before each test, mock the environment variables (only needed for testing environment)
   beforeAll(() => {
-    process.env.EMAIL_USER = 'your_email_here@gmail.com';  // Replace with a test email
-    process.env.EMAIL_PASS = 'your_email_password_here';   // Replace with a test password
+    process.env.EMAIL_USER = 'your_email_here@gmail.com';
+    process.env.EMAIL_PASS = 'your_email_password_here'; 
   });
 
   it('should send an email successfully', async () => {
@@ -23,7 +23,7 @@ describe('sendEmail', () => {
       expect(result).toBe('Email sent successfully');  // Assuming you send back success message or handle it in your service
     } catch (error) {
       console.error(error);
-      throw error;  // We want this test to fail if an error occurs
+      throw error;
     }
   });
 

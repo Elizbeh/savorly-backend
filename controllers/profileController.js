@@ -3,7 +3,7 @@ import streamifier from 'streamifier';
 import { getProfileByUserId, updateProfile } from '../models/profile.js';
 
 export const getUserProfile = async (req, res) => {
-  const userId = req.user?.id; // FIXED
+  const userId = req.user?.id;
 
   try {
     const userProfile = await getProfileByUserId(userId);

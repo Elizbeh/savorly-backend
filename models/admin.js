@@ -1,4 +1,4 @@
-import pool from '../config/db.js'; // Adjust this import to match your DB setup
+import pool from '../config/db.js';
 
 export const getAllUsersFromDB = async () => {
     try {

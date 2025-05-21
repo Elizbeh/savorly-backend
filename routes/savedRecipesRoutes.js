@@ -10,10 +10,10 @@ import {
 
 const router = express.Router();
 
-// Since base route is '/api/saved-recipes', only use relative paths here
-router.post('/', authenticate, saveRecipeForUser); // Optional: could be removed if unused
+
+router.post('/', authenticate, saveRecipeForUser);
 router.post('/toggle-save', authenticate, toggleSaveRecipe);
-router.get('/', authenticate, getSavedRecipes); // Matches frontend GET /api/saved-recipes
+router.get('/', authenticate, getSavedRecipes);
 
 router.delete('/unsave', authenticate, unsaveRecipe);
 export { router };

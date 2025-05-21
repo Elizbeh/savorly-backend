@@ -1,5 +1,5 @@
 import pool from '../config/db.js';
-import logger from '../config/logger.js'; // ✅ Make sure the path is correct
+import logger from '../config/logger.js';
 
 // Helper function to handle database errors
 const handleDatabaseError = (error, message = 'Database error') => {

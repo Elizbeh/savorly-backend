@@ -4,7 +4,7 @@ const streamUpload = (fileBuffer, folder) => {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       {
-        folder: folder,  // Dynamically set folder based on usage
+        folder: folder,
         resource_type: 'image',
       },
       (error, result) => {
@@ -15,7 +15,7 @@ const streamUpload = (fileBuffer, folder) => {
         }
       }
     );
-    stream.end(fileBuffer); // Send the buffer into the stream
+    stream.end(fileBuffer);
   });
 };
 
