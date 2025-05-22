@@ -34,4 +34,5 @@ describe('Comment Model Tests', () => {
 
     expect(result).toEqual(mockComments);
   });
+  
 });

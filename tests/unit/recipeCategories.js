@@ -33,4 +33,10 @@ describe('Recipe Categories Model Tests', () => {
       [1]
     );
   });
+
+   afterAll(async () => {
+    if (typeof pool.end === 'function') {
+      await pool.end();
+    }
+  });
 });

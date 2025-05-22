@@ -37,9 +37,6 @@ const dbTest = async () => {
     console.log('Database test completed successfully!');
   } catch (err) {
     console.error('Database test failed:', err.message);
-  } finally {
-    // Close the database connection
-    pool.end();
   }
 };
 
@@ -47,3 +44,9 @@ const dbTest = async () => {
 it('should perform an async database test', async () => {
   await dbTest(); // Running the async db test function
 });
+
+ afterAll(async () => {
+    if (typeof pool.end === 'function') {
+      await pool.end();
+    }
+  });

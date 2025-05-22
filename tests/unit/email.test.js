@@ -67,4 +67,6 @@ describe('sendEmail', () => {
 
     expect(logger.error).toHaveBeenCalledWith(expect.stringContaining('Email send failed'));
   });
+
+  
 });

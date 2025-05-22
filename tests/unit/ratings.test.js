@@ -18,4 +18,10 @@ describe('Rating Model Tests', () => {
 
     expect(result).toEqual({ id: 1, recipeId: mockRecipeId, userId: mockUserId, rating: mockRating });
   });
+
+   afterAll(async () => {
+    if (typeof pool.end === 'function') {
+      await pool.end();
+    }
+  });
 });

@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      NODE_ENV: production
       DB_HOST: ${{ secrets.DB_HOST }}
       DB_PORT: ${{ secrets.DB_PORT }}
       DB_USER: ${{ secrets.DB_USER }}
@@ -44,28 +45,20 @@ jobs:
 
       - name: 📦 Install dependencies (including dev)
         run: npm ci
-        # Note: no NODE_ENV=production here, so devDependencies (like jest) get installed
 
       - name: 🧪 Run unit tests
         run: npx jest --testPathPattern=tests/unit --runInBand
-        env:
-          NODE_ENV: test
 
       - name: 🔌 Run integration tests
         run: npm run test:integration
-        env:
-          NODE_ENV: test
 
       - name: 🛠 Run DB migrations
         run: npm run migrate
-        env:
-          NODE_ENV: production
 
       - name: 🚀 Deploy to Render
         if: success()
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-          NODE_ENV: production
         run: |
           npm install -g @render/cli
           render deploy service \
