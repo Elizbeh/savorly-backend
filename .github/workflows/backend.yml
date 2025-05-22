@@ -54,17 +54,3 @@ jobs:
 
       - name: 🛠 Run DB migrations
         run: npm run migrate
-
-      - name: 🚀 Deploy to Render
-        if: success()
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-        run: |
-          npm install -g @render/cli
-          render deploy service \
-            --service-id ${{ secrets.RENDER_SERVICE_ID }} \
-            --yes
-
-      - name: ✅ Health Check
-        if: success()
-        run: curl --fail https://savorly-backend-c6hu.onrender.com || exit 1
