@@ -52,7 +52,6 @@ jobs:
       - name: 🔌 Run integration tests
         run: npm run test:integration -- --watchAll=false
 
-
       - name: 🛠 Run DB migrations
         run: npm run migrate
 
