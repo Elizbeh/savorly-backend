@@ -4,42 +4,42 @@ import logger from '../config/logger.js'
 
 
 export const createUser = async (userData) => {
-    try {
-        const { email, password_hash, first_name, last_name, role = 'user', verification_token } = userData;
+  const connection = await pool.getConnection();
 
-        const tokenExpiration = new Date(Date.now() + 60 * 60 * 1000);
+  try {
+    await connection.beginTransaction();
 
-        const query = `
-            INSERT INTO users 
-            (email, password_hash, first_name, last_name, role, verification_token, verification_token_expires_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        `;
+    // Insert user
+    const { email, password_hash, first_name, last_name, role = 'user', verification_token } = userData;
+    const tokenExpiration = new Date(Date.now() + 60 * 60 * 1000);
 
-        const [result] = await pool.query(query, [
-            email,
-            password_hash,
-            first_name,
-            last_name,
-            role,
-            verification_token,
-            tokenExpiration,
-        ]);
+    const [result] = await connection.query(
+      `INSERT INTO users (email, password_hash, first_name, last_name, role, verification_token, verification_token_expires_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [email, password_hash, first_name, last_name, role, verification_token, tokenExpiration]
+    );
 
-        const userId = result.insertId;
+    const userId = result.insertId;
 
-        await createUserProfile({
-            user_id: userId,
-            first_name,
-            last_name,
-            bio: null,
-            avatar_url: null
-        });
-        
-        return { id: userId, email, first_name, last_name, role };
-    } catch (error) {
-        logger.error('Error creating user:', error);
-        throw error;
-    }
+    // Pass the connection to createUserProfile
+    await createUserProfile(connection, {
+      user_id: userId,
+      first_name,
+      last_name,
+      bio: null,
+      avatar_url: null,
+    });
+
+    await connection.commit();
+
+    return { id: userId, email, first_name, last_name, role };
+  } catch (error) {
+    await connection.rollback();
+    logger.error('Error creating user:', error);
+    throw error;
+  } finally {
+    connection.release();
+  }
 };
 
 

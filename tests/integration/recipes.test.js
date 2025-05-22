@@ -1,116 +1,232 @@
-import request from 'supertest';
-import app from '../../app';
-import pool from '../../config/db';
+import * as recipeModel from '../../models/recipes.js'; // adjust path if needed
+import pool from '../../config/db.js';
+import logger from '../../config/logger.js';
 
-// Clean up the database before and after tests
-beforeAll(async () => {
-  // Clear users and recipes tables before each test
-  await pool.query('TRUNCATE TABLE users');
-  await pool.query('TRUNCATE TABLE recipes');
-});
+// Mock the database pool and logger
+jest.mock('../../config/db.js');
+jest.mock('../../config/logger.js');
 
-afterAll(async () => {
-  await pool.end();
-});
-
-describe('Recipe CRUD Tests', () => {
-  // Test creating a new recipe
-  it('should create a new recipe successfully', async () => {
-    const userData = {
-      email: 'test@example.com',
-      password: 'password123'
-    };
-
-    // Register and log in to get a token for creating recipes
-    await request(app).post('/api/auth/register').send(userData);
-    const loginResponse = await request(app)
-      .post('/api/auth/login')
-      .send(userData);
-
-    const token = loginResponse.body.token;
-
-    const recipeData = {
-      title: 'Spaghetti Bolognese',
-      description: 'Delicious Italian pasta with bolognese sauce'
-    };
-
-    const response = await request(app)
-      .post('/api/recipes')
-      .set('Authorization', `Bearer ${token}`)
-      .send(recipeData);
-
-    expect(response.status).toBe(201); 
-    expect(response.body).toHaveProperty('title', recipeData.title);
-    expect(response.body).toHaveProperty('description', recipeData.description);
+describe('Recipe Model', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  // Test fetching all recipes
-  it('should fetch all recipes', async () => {
-    const response = await request(app).get('/api/recipes');
+  describe('create', () => {
+    it('should create a new recipe and return the recipe object with id', async () => {
+      const fakeInsertId = 123;
+      pool.query.mockResolvedValueOnce([{ insertId: fakeInsertId }]);
+      
+      const recipeData = {
+        title: 'Test Recipe',
+        description: 'Delicious test recipe',
+        userId: 1,
+        imageUrl: 'http://image.url',
+        prepTime: 10,
+        cookTime: 20,
+        calories: 300,
+      };
 
-    expect(response.status).toBe(200);
-    expect(Array.isArray(response.body)).toBe(true);
+      const result = await recipeModel.create(recipeData);
+
+      expect(pool.query).toHaveBeenCalledWith(
+        expect.stringContaining('INSERT INTO recipes'),
+        [
+          recipeData.title,
+          recipeData.description,
+          recipeData.userId,
+          recipeData.imageUrl,
+          recipeData.prepTime,
+          recipeData.cookTime,
+          recipeData.calories,
+        ]
+      );
+      expect(logger.info).toHaveBeenCalledWith(`Recipe created with ID ${fakeInsertId}`);
+      expect(result).toEqual({ id: fakeInsertId, ...recipeData });
+    });
+
+    it('should throw error on DB failure', async () => {
+      const error = new Error('DB failure');
+      pool.query.mockRejectedValueOnce(error);
+
+      await expect(recipeModel.create({})).rejects.toThrow('Error creating recipe');
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining('Error creating recipe'),
+        expect.objectContaining({ stack: expect.any(String) })
+      );
+    });
   });
 
-  // Test fetching a recipe by ID
-  it('should fetch a recipe by ID', async () => {
-    const recipeData = {
-      title: 'Spaghetti Bolognese',
-      description: 'Delicious Italian pasta with bolognese sauce'
-    };
+  describe('getRecipes', () => {
+    it('should return all recipes when no category filter', async () => {
+      const fakeRecipes = [{ id: 1, title: 'Test' }];
+      pool.query.mockResolvedValueOnce([fakeRecipes]);
 
-    const createResponse = await request(app)
-      .post('/api/recipes')
-      .send(recipeData);
+      const recipes = await recipeModel.getRecipes();
 
-    const recipeId = createResponse.body.id;
+      expect(pool.query).toHaveBeenCalledWith('SELECT * FROM recipes');
+      expect(logger.info).toHaveBeenCalledWith(`Fetched ${fakeRecipes.length} recipes`);
+      expect(recipes).toEqual(fakeRecipes);
+    });
 
-    const response = await request(app).get(`/api/recipes/${recipeId}`);
+    it('should return filtered recipes when categoryId is provided', async () => {
+      const categoryId = 2;
+      const filteredRecipes = [{ id: 2, title: 'Filtered Recipe' }];
+      pool.query.mockResolvedValueOnce([filteredRecipes]);
 
-    expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('id', recipeId);
-    expect(response.body).toHaveProperty('title', recipeData.title);
+      const recipes = await recipeModel.getRecipes({ categoryId });
+
+      expect(pool.query).toHaveBeenCalledWith(
+        expect.stringContaining('INNER JOIN recipe_categories'),
+        [categoryId]
+      );
+      expect(logger.info).toHaveBeenCalledWith(`Fetched ${filteredRecipes.length} recipes`);
+      expect(recipes).toEqual(filteredRecipes);
+    });
+
+    it('should throw error on DB failure', async () => {
+      pool.query.mockRejectedValueOnce(new Error('DB failure'));
+
+      await expect(recipeModel.getRecipes()).rejects.toThrow('Error fetching recipes');
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining('Error fetching recipes'),
+        expect.objectContaining({ stack: expect.any(String) })
+      );
+    });
   });
 
-  // Test updating a recipe title
-  it('should update the recipe title', async () => {
-    const recipeData = {
-      title: 'Spaghetti Bolognese',
-      description: 'Delicious Italian pasta with bolognese sauce'
-    };
+  describe('findById', () => {
+    it('should return recipe when found', async () => {
+      const fakeRecipe = [{ id: 5, title: 'Found Recipe' }];
+      pool.query.mockResolvedValueOnce([fakeRecipe]);
 
-    const createResponse = await request(app)
-      .post('/api/recipes')
-      .send(recipeData);
+      const recipe = await recipeModel.findById(5);
 
-    const recipeId = createResponse.body.id;
+      expect(pool.query).toHaveBeenCalledWith('SELECT * FROM recipes WHERE id = ?', [5]);
+      expect(recipe).toEqual(fakeRecipe[0]);
+    });
 
-    const updatedData = { title: 'Updated Spaghetti Bolognese' };
+    it('should return null if no recipe found', async () => {
+      pool.query.mockResolvedValueOnce([[]]);
 
-    const response = await request(app)
-      .put(`/api/recipes/${recipeId}`)
-      .send(updatedData);
+      const recipe = await recipeModel.findById(999);
 
-    expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('title', updatedData.title);
+      expect(recipe).toBeNull();
+    });
+
+    it('should throw error on DB failure', async () => {
+      pool.query.mockRejectedValueOnce(new Error('DB failure'));
+
+      await expect(recipeModel.findById(1)).rejects.toThrow('Error fetching recipe');
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining('Error fetching recipe'),
+        expect.objectContaining({ stack: expect.any(String) })
+      );
+    });
   });
 
-  // Test deleting a recipe
-  it('should delete the recipe', async () => {
-    const recipeData = {
-      title: 'Spaghetti Bolognese',
-      description: 'Delicious Italian pasta with bolognese sauce'
-    };
+  describe('update', () => {
+    it('should update a recipe and return true if affectedRows > 0', async () => {
+      pool.query.mockResolvedValueOnce([{ affectedRows: 1 }]);
+      const updateData = {
+        id: 1,
+        title: 'Updated Title',
+        description: 'Updated desc',
+        imageUrl: 'http://updated.image',
+        prepTime: 15,
+        cookTime: 25,
+        calories: 400,
+      };
 
-    const createResponse = await request(app)
-      .post('/api/recipes')
-      .send(recipeData);
+      const result = await recipeModel.update(updateData);
 
-    const recipeId = createResponse.body.id;
+      expect(pool.query).toHaveBeenCalledWith(
+        expect.stringContaining('UPDATE recipes SET'),
+        [
+          updateData.title,
+          updateData.description,
+          updateData.imageUrl,
+          updateData.prepTime,
+          updateData.cookTime,
+          updateData.calories,
+          updateData.id,
+        ]
+      );
+      expect(logger.info).toHaveBeenCalledWith(`Updated recipe ID ${updateData.id}, affected rows: 1`);
+      expect(result).toBe(true);
+    });
 
-    const response = await request(app).delete(`/api/recipes/${recipeId}`);
+    it('should return false if no rows affected', async () => {
+      pool.query.mockResolvedValueOnce([{ affectedRows: 0 }]);
 
-    expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('message', 'Recipe deleted successfully');
+      const result = await recipeModel.update({ id: 1 });
+
+      expect(result).toBe(false);
+    });
+
+    it('should throw error on DB failure', async () => {
+      pool.query.mockRejectedValueOnce(new Error('DB failure'));
+
+      await expect(recipeModel.update({ id: 1 })).rejects.toThrow('Error updating recipe');
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining('Error updating recipe'),
+        expect.objectContaining({ stack: expect.any(String) })
+      );
+    });
+  });
+
+  describe('remove', () => {
+    it('should delete a recipe and return true if affectedRows > 0', async () => {
+      pool.query.mockResolvedValueOnce([{ affectedRows: 1 }]);
+
+      const result = await recipeModel.remove(1);
+
+      expect(pool.query).toHaveBeenCalledWith('DELETE FROM recipes WHERE id = ?', [1]);
+      expect(logger.info).toHaveBeenCalledWith(`Deleted recipe ID 1, affected rows: 1`);
+      expect(result).toBe(true);
+    });
+
+    it('should return false if no rows affected', async () => {
+      pool.query.mockResolvedValueOnce([{ affectedRows: 0 }]);
+
+      const result = await recipeModel.remove(1);
+
+      expect(result).toBe(false);
+    });
+
+    it('should throw error on DB failure', async () => {
+      pool.query.mockRejectedValueOnce(new Error('DB failure'));
+
+      await expect(recipeModel.remove(1)).rejects.toThrow('Error deleting recipe');
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining('Error deleting recipe'),
+        expect.objectContaining({ stack: expect.any(String) })
+      );
+    });
+  });
+
+  describe('getCategoriesForRecipe', () => {
+    it('should return categories for a given recipe', async () => {
+      const categories = [{ id: 1, name: 'Dessert' }];
+      pool.query.mockResolvedValueOnce([categories]);
+
+      const result = await recipeModel.getCategoriesForRecipe(1);
+
+      expect(pool.query).toHaveBeenCalledWith(
+        expect.stringContaining('INNER JOIN recipe_categories'),
+        [1]
+      );
+      expect(logger.info).toHaveBeenCalledWith(`Fetched ${categories.length} categories for recipe ID 1`);
+      expect(result).toEqual(categories);
+    });
+
+    it('should throw error on DB failure', async () => {
+      pool.query.mockRejectedValueOnce(new Error('DB failure'));
+
+      await expect(recipeModel.getCategoriesForRecipe(1)).rejects.toThrow('Error fetching categories for recipe');
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining('Error fetching categories for recipe'),
+        expect.objectContaining({ stack: expect.any(String) })
+      );
+    });
   });
 });

@@ -21,7 +21,7 @@ export const registerUser = async (req, res) => {
         const existingUser = await getUserByEmail(email);
         if (existingUser) {
             logger.warn(`Registration failed: Email already in use - ${email}`);
-            return res.status(400).json({ message: 'Email already in use' });
+            return res.status(409).json({ message: 'Email already in use' });
         }
 
         const password_hash = await bcrypt.hash(password, 10);
@@ -102,13 +102,13 @@ export const refreshToken = (req, res) => {
         const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
 
         const newRefreshToken = jwt.sign(
-            { userId: decoded.userId, email: decoded.email, role: decoded.role },
+            { id: decoded.id, email: decoded.email, role: decoded.role },
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: '7d' }
         );
 
         const newAccessToken = jwt.sign(
-            { userId: decoded.userId, email: decoded.email, role: decoded.role },
+            { id: decoded.id, email: decoded.email, role: decoded.role },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );

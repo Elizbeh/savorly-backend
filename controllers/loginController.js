@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { getUserByEmail } from '../models/users.js';
@@ -14,28 +11,28 @@ export const loginUser = async (req, res) => {
     const user = await getUserByEmail(email);
     if (!user) {
       logger.warn(`Login attempt failed: User not found - ${email}`);
-      return res.status(400).json({ message: 'User not found' });
+      return res.status(401).json({ message: 'User not found' });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password_hash);
     if (!isPasswordValid) {
       logger.warn(`Invalid password attempt for email: ${email}`);
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     if (!user.is_verified) {
       logger.info(`Unverified email login attempt: ${email}`);
-      return res.status(400).json({ message: 'Please verify your email before logging in' });
+      return res.status(401).json({ message: 'Please verify your email before logging in' });
     }
 
     const accessToken = jwt.sign(
-      { userId: user.id, email: user.email, role: user.role },
+      { id: user.id, email: user.email, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
     const refreshToken = jwt.sign(
-      { userId: user.id, email: user.email, role: user.role },
+      { id: user.id, email: user.email, role: user.role },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: '7d' }
     );

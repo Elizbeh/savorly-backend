@@ -1,5 +1,5 @@
+import 'dotenv/config'
 import mysql from 'mysql2';
-import 'dotenv/config';
 import logger from '../config/logger.js';
 
 const isProd = process.env.NODE_ENV === 'production';

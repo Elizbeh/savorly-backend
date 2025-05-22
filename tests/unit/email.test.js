@@ -1,52 +1,70 @@
-// Import necessary modules
-import { sendEmail } from '../../services/emailService';  // Adjust path to where your service is located
+// tests/unit/email.test.js
 import nodemailer from 'nodemailer';
+import { sendEmail } from '../../services/emailService.js';  // Adjust path as needed
+import logger from '../../config/logger.js';
 
-// Mocking the `nodemailer` module to avoid sending real emails
-jest.mock('nodemailer', () => ({
-  createTransport: () => ({
-    sendMail: jest.fn().mockResolvedValue('Email sent successfully'),
-  }),
+jest.mock('../../config/logger', () => ({
+  __esModule: true,
+  default: {
+    info: jest.fn(),
+    error: jest.fn(), // Add if your code uses error too
+  },
 }));
 
+// Mock nodemailer
+jest.mock('nodemailer');
+
 describe('sendEmail', () => {
+  let sendMailMock;
 
-  // Before each test, mock the environment variables (only needed for testing environment)
   beforeAll(() => {
-    process.env.EMAIL_USER = 'your_email_here@gmail.com';
-    process.env.EMAIL_PASS = 'your_email_password_here'; 
+    sendMailMock = jest.fn();
+    nodemailer.createTransport.mockReturnValue({ sendMail: sendMailMock });
   });
 
-  it('should send an email successfully', async () => {
-    try {
-      const result = await sendEmail('test@example.com', 'John', 'https://example.com/verify-email');
-      expect(result).toBe('Email sent successfully');  // Assuming you send back success message or handle it in your service
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
+  beforeEach(() => {
+    jest.clearAllMocks();
+    process.env.EMAIL_USER = 'test@example.com';
+    process.env.EMAIL_PASS = 'testpass';
   });
 
-  it('should throw an error if email credentials are missing', async () => {
-    // Temporarily remove email credentials
+  afterAll(() => {
     delete process.env.EMAIL_USER;
     delete process.env.EMAIL_PASS;
-
-    try {
-      await sendEmail('test@example.com', 'John', 'https://example.com/verify-email');
-    } catch (error) {
-      expect(error.message).toBe('Missing email credentials');
-    }
   });
 
-  it('should throw an error if email fails to send', async () => {
-    // Mocking failure of email sending
-    nodemailer.createTransport().sendMail.mockRejectedValue(new Error('Failed to send email'));
+  it('should reject if EMAIL_USER or EMAIL_PASS are missing', async () => {
+    delete process.env.EMAIL_USER;
+    await expect(sendEmail('to@test.com', 'User', 'http://verify.url')).rejects.toThrow('Missing email credentials');
+  });
 
-    try {
-      await sendEmail('test@example.com', 'John', 'https://example.com/verify-email');
-    } catch (error) {
-      expect(error.message).toBe('Failed to send email');
-    }
+  it('should send email successfully', async () => {
+    sendMailMock.mockImplementation((mailOptions, callback) => {
+      callback(null, { response: '250 Message accepted' });
+    });
+
+    await expect(sendEmail('to@test.com', 'User', 'http://verify.url')).resolves.toEqual({ response: '250 Message accepted' });
+
+    expect(nodemailer.createTransport).toHaveBeenCalledWith(expect.objectContaining({
+      auth: {
+        user: 'test@example.com',
+        pass: 'testpass'
+      }
+    }));
+
+    expect(sendMailMock).toHaveBeenCalledWith(expect.objectContaining({
+      to: 'to@test.com',
+      subject: 'Verify Your Email Address',
+    }), expect.any(Function));
+  });
+
+  it('should reject if sendMail returns error', async () => {
+    sendMailMock.mockImplementation((mailOptions, callback) => {
+      callback(new Error('Failed to send'), null);
+    });
+
+    await expect(sendEmail('to@test.com', 'User', 'http://verify.url')).rejects.toThrow('Failed to send email');
+
+    expect(logger.error).toHaveBeenCalledWith(expect.stringContaining('Email send failed'));
   });
 });

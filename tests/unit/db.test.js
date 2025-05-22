@@ -1,4 +1,4 @@
-import pool from '../../config/db.js'; // Import the pool from your db config
+import pool from '../../config/db'
 
 // Database test function
 const dbTest = async () => {

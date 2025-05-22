@@ -54,6 +54,12 @@
       "src",
       "config"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "moduleNameMapper": {
+      "^bcrypt$": "bcryptjs"
+    }
   }
 }

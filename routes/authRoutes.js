@@ -27,20 +27,20 @@ router.get('/verify-email', verifyEmail);
 // Set up rate lmiting:5 request per IP address
 const loginRateLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 10,
+    max: 20,
     message: 'Too many attempts from this IP, pls try again after 15 minutes.',
 });
 
 // Login Route with validation middleware
 router.post('/login', loginRateLimiter, validateLogin, loginUser);
 
-// Example of a protected route using authentication middleware
+// protected route using authentication middleware
 router.get('/protected', authenticate, (req, res) => {
     res.json({ message: 'You are authorized!', user: req.user });
 });
 
 
-// Example Route for resending a verification email with a new token
+// Route for resending a verification email with a new token
 router.post("/resend-verification", async (req, res) => {
     const { email } = req.body;
     const [users] = await pool.execute('SELECT * FROM users WHERE email = ?', [email]);
@@ -53,7 +53,7 @@ router.post("/resend-verification", async (req, res) => {
     
   
     // Generate a new token and send the email
-    const newToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const newToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   
     // Send email with new token
     resendVerificationEmail(user.email, newToken);
