@@ -38,7 +38,7 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.27.1",
     "@babel/preset-env": "^7.26.0",
     "@types/jsonwebtoken": "^9.0.7",
     "babel-jest": "^29.7.0",
