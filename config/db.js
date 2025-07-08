@@ -2,6 +2,7 @@ import 'dotenv/config';
 import mysql from 'mysql2';
 import logger from '../config/logger.js';
 
+
 const isProd = process.env.NODE_ENV === 'production';
 const requireSSL = process.env.DB_REQUIRE_SSL === 'true';
 
