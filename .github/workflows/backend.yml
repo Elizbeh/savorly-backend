@@ -58,6 +58,11 @@ jobs:
       - name: 🐛 Debug env in test step
         run: env | grep DB_NAME
 
+      - name: 🛠️ Create DB if not exists
+        run: |
+          mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
+        env:
+          MYSQL_PWD: ${{ secrets.DB_PASSWORD }}
 
       - name: 🧪 Test DB connection
         run: |
@@ -73,7 +78,7 @@ jobs:
                   ssl: { rejectUnauthorized: true }
                 });
                 console.log('✅ DB connection successful');
-                await connection.end();  // <-- Close the connection explicitly
+                await connection.end();
                 process.exit(0);
               } catch (err) {
                 console.error('❌ DB connection failed:', err.message);
