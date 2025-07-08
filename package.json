@@ -9,7 +9,6 @@
     "migrate": "node ./migrations/runMigrations.js",
     "start": "node server.js",
     "test": "cross-env NODE_ENV=development npx jest --watch",
-
     "test:unit": "npx jest tests/unit",
     "test:integration": "npx jest --watch --testPathPattern=tests/integration",
     "test:ci": "npx jest"
@@ -39,7 +38,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",
-    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-env": "^7.28.0",
     "@types/jsonwebtoken": "^9.0.7",
     "babel-jest": "^29.7.0",
     "cross-env": "^7.0.3",
