@@ -48,10 +48,9 @@ jobs:
 
       - name: 🛠 Run DB migrations
         run: npm run migrate
-        
+
       - name: 🧪 Run unit tests
         run: npx jest tests/unit --watchAll=false
 
       - name: 🔌 Run integration tests
-        run: npx jest --testPathPattern=tests/integration --watchAll=false      - 
-        
+        run: npx jest --testPathPattern=tests/integration --watchAll=false
