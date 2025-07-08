@@ -25,6 +25,8 @@ const pool = mysql
       : {}),
   })
   .promise();
+  console.log('DB_NAME:', process.env.DB_NAME);
+
 
 // quick connection check in dev
 if (!isProd) {
