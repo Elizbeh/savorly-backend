@@ -10,7 +10,7 @@
   "start": "node server.js",
   "test": "cross-env NODE_ENV=development jest --watch",
   "test:unit": "cross-env NODE_ENV=development jest tests/unit",
-  "test:integration": "cross-env NODE_ENV=development jest --testPathPattern=tests/integration --detectOpenHandles",
+  "test:integration": "cross-env NODE_ENV=development jest --testPathPattern=tests/integration ",
   "test:ci": "cross-env NODE_ENV=development jest"
 },
   "keywords": [],

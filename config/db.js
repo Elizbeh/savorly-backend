@@ -1,7 +1,5 @@
-import 'dotenv/config';
 import mysql from 'mysql2';
-import logger from '../config/logger.js';
-
+import logger from './logger.js';
 
 const isProd = process.env.NODE_ENV === 'production';
 const requireSSL = process.env.DB_REQUIRE_SSL === 'true';
@@ -25,20 +23,22 @@ const pool = mysql
       : {}),
   })
   .promise();
-  console.log('DB_NAME:', process.env.DB_NAME);
 
+console.log('DB_NAME:', process.env.DB_NAME);
 
-// quick connection check in dev
-if (!isProd) {
-  (async () => {
-    try {
-      const conn = await pool.getConnection();
-      logger.info('Database connected successfully');
-      conn.release();
-    } catch (err) {
-      logger.error('Database connection error', { message: err.message, stack: err.stack });
-    }
-  })();
+/**
+ * Function to check database connection.
+ * Call this explicitly in app start or tests before running queries.
+ */
+export async function checkDbConnection() {
+  try {
+    const conn = await pool.getConnection();
+    logger.info('Database connected successfully');
+    conn.release();
+  } catch (err) {
+    logger.error('Database connection error', { message: err.message, stack: err.stack });
+    throw err; // Optional: rethrow if you want to fail startup/tests on connection error
+  }
 }
 
 export default pool;

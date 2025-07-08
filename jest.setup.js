@@ -1,16 +1,11 @@
+import 'dotenv/config'; 
 import pool from './config/db';
+import { checkDbConnection } from './config/db.js';
 
 beforeAll(async () => {
-  // Test connection before tests start
-  try {
-    const conn = await pool.getConnection();
-    conn.release();
-    console.log('✅ Database connection established before tests');
-  } catch (error) {
-    console.error('❌ Failed to connect to database before tests:', error);
-    throw error;
-  }
+  await checkDbConnection();
 });
+
 
 afterAll(async () => {
   // Close DB pool after tests finish
