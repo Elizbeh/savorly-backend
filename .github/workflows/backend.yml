@@ -58,22 +58,23 @@ jobs:
       - name: 🧪 Test DB connection
         run: |
           node -e "
-            import('mysql2/promise').then(mysql => {
-              mysql.createConnection({
-                host: process.env.DB_HOST,
-                user: process.env.DB_USER,
-                password: process.env.DB_PASSWORD,
-                database: process.env.DB_NAME,
-                port: process.env.DB_PORT,
-                ssl: { rejectUnauthorized: true }
-              }).then(() => {
+            import('mysql2/promise').then(async mysql => {
+              try {
+                const connection = await mysql.createConnection({
+                  host: process.env.DB_HOST,
+                  user: process.env.DB_USER,
+                  password: process.env.DB_PASSWORD,
+                  database: process.env.DB_NAME,
+                  port: process.env.DB_PORT,
+                  ssl: { rejectUnauthorized: true }
+                });
                 console.log('✅ DB connection successful');
-                await connection.end();
-                process.exit(0)
-              }).catch(err => {
+                await connection.end();  // <-- Close the connection explicitly
+                process.exit(0);
+              } catch (err) {
                 console.error('❌ DB connection failed:', err.message);
                 process.exit(1);
-              });
+              }
             });
           "
 
