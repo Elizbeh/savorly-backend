@@ -44,7 +44,10 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: 📦 Install dependencies (including dev)
+        env:
+          NODE_ENV: development
         run: npm ci
+
 
       - name: 🛠 Run DB migrations
         run: npm run migrate
