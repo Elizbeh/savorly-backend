@@ -68,6 +68,8 @@ jobs:
                 ssl: { rejectUnauthorized: true }
               }).then(() => {
                 console.log('✅ DB connection successful');
+                await connection.end();
+                process.exit(0)
               }).catch(err => {
                 console.error('❌ DB connection failed:', err.message);
                 process.exit(1);
