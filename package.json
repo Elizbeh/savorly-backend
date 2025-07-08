@@ -8,8 +8,9 @@
     "dev": "cross-env NODE_ENV=development nodemon server.js",
     "migrate": "node ./migrations/runMigrations.js",
     "start": "node server.js",
-    "test": "npx jest --watch",
-    "test:unit": "npx jest --watch --testPathPattern=tests/unit",
+    "test": "cross-env NODE_ENV=development npx jest --watch",
+
+    "test:unit": "npx jest --watch  --testPathPattern=tests/unit",
     "test:integration": "npx jest --watch --testPathPattern=tests/integration",
     "test:ci": "npx jest"
   },

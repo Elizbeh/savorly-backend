@@ -1,7 +1,12 @@
+import 'dotenv/config';
 import request from 'supertest';
 import bcrypt from 'bcrypt';
 import app from '../../app.js';
 import pool from '../../config/db';
+
+
+console.log('AUTH TEST ENV DB_USER:', process.env.DB_USER);
+console.log('AUTH TEST ENV DB_PASSWORD:', process.env.DB_PASSWORD ? '******' : 'NOT SET');
 
 beforeAll(async () => {
   // Disable foreign key checks
@@ -45,9 +50,6 @@ beforeAll(async () => {
   await pool.query('SET foreign_key_checks = 1');
 });
 
-afterAll(async () => {
-  await pool.end();
-});
 
 describe('User Authentication Tests', () => {
   it('should register a new user successfully', async () => {
@@ -99,4 +101,11 @@ describe('User Authentication Tests', () => {
     expect(response.status).toBe(401);
     expect(response.body).toHaveProperty('message', 'Invalid credentials');
   });
+});
+afterAll(async () => {
+  try {
+    await pool.end();
+  } catch (err) {
+    console.error('❌ Error during afterAll teardown:', err);
+  }
 });

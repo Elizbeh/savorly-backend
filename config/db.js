@@ -4,12 +4,13 @@ import logger from '../config/logger.js';
 
 const isProd = process.env.NODE_ENV === 'production';
 
+
 const pool = mysql
   .createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: isProd ? process.env.DB_HOST : process.env.DB_HOST,
+  user: isProd ? process.env.DB_USER : process.env.DB_USER,
+  password: isProd ? process.env.DB_PASSWORD : process.env.DB_PASSWORD,
+  database: isProd ? process.env.DB_NAME : process.env.DB_NAME,
     // SSL only for prod
     ...(isProd && {
       ssl: {

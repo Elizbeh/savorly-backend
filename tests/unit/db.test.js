@@ -1,5 +1,6 @@
 import pool from '../../config/db'
 
+
 // Database test function
 const dbTest = async () => {
   try {
@@ -45,8 +46,3 @@ it('should perform an async database test', async () => {
   await dbTest(); // Running the async db test function
 });
 
- afterAll(async () => {
-    if (typeof pool.end === 'function') {
-      await pool.end();
-    }
-  });
