@@ -10,8 +10,8 @@
     "start": "node server.js",
     "test": "cross-env NODE_ENV=development npx jest --watch",
     "test:unit": "jest tests/unit",
-    "test:integration": " jest --watch --testPathPattern=tests/integration",
-    "test:ci": " jest"
+    "test:integration": "jest --testPathPattern=tests/integration",
+    "test:ci": "npx jest"
   },
   "keywords": [],
   "author": "",

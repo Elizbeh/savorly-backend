@@ -46,11 +46,15 @@ jobs:
       - name: 📦 Install dependencies (including dev)
         run: npm ci
 
+      - name: 🛠 Run DB migrations
+        run: npm run migrate
+        
       - name: 🧪 Run unit tests
         run: npm run test:unit -- --watchAll=false
 
       - name: 🔌 Run integration tests
         run: npm run test:integration -- --watchAll=false
+
 
       - name: 🛠 Run DB migrations
         run: npm run migrate
