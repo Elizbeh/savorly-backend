@@ -7,10 +7,10 @@ on:
 
 jobs:
   build-test-deploy:
+    name: Build, Test, and Deploy Backend
     runs-on: ubuntu-latest
 
     env:
-      NODE_ENV: production
       DB_HOST: ${{ secrets.DB_HOST }}
       DB_PORT: ${{ secrets.DB_PORT }}
       DB_USER: ${{ secrets.DB_USER }}
@@ -44,13 +44,19 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: 📦 Install dependencies (including dev)
+        env:
+          NODE_ENV: development
         run: npm ci
 
       - name: 🛠 Run DB migrations
         run: npm run migrate
 
       - name: 🧪 Run unit tests
-        run: npx jest tests/unit --watchAll=false
+        env:
+          NODE_ENV: development
+        run: npx jest tests/unit --watchAll=false --runInBand
 
       - name: 🔌 Run integration tests
-        run: npx jest --testPathPattern=tests/integration --watchAll=false
+        env:
+          NODE_ENV: development
+        run: npx jest --testPathPattern=tests/integration --watchAll=false --runInBand
