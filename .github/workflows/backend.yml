@@ -50,12 +50,8 @@ jobs:
         run: npm run migrate
         
       - name: 🧪 Run unit tests
-        run: npm run test:unit -- --watchAll=false
+        run: npx jest tests/unit --watchAll=false
 
       - name: 🔌 Run integration tests
-        run: npm run test:integration -- --watchAll=false
-
-
-      - name: 🛠 Run DB migrations
-        run: npm run migrate
+        run: npx jest --testPathPattern=tests/integration --watchAll=false      - 
         
