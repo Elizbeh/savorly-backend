@@ -102,10 +102,3 @@ describe('User Authentication Tests', () => {
     expect(response.body).toHaveProperty('message', 'Invalid credentials');
   });
 });
-afterAll(async () => {
-  try {
-    await pool.end();
-  } catch (err) {
-    console.error('❌ Error during afterAll teardown:', err);
-  }
-});
