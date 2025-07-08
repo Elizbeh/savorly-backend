@@ -1,8 +1,11 @@
+import 'dotenv/config';
 import mysql from 'mysql2';
 import logger from './logger.js';
 
 const isProd = process.env.NODE_ENV === 'production';
 const requireSSL = process.env.DB_REQUIRE_SSL === 'true';
+
+console.log('DB_NAME:', process.env.DB_NAME);
 
 const pool = mysql
   .createPool({
@@ -24,7 +27,6 @@ const pool = mysql
   })
   .promise();
 
-console.log('DB_NAME:', process.env.DB_NAME);
 
 /**
  * Function to check database connection.
