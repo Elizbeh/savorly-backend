@@ -28,7 +28,7 @@ app.set('trust proxy', 1);
 
 const allowedOrigins = [
   ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL] : []),
-  'https://localhost:5174',
+  'https://localhost:5173',
 ];
 
 const corsOptions = {
