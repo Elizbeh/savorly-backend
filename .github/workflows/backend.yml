@@ -7,7 +7,6 @@ on:
 
 jobs:
   build-test-deploy:
-    name: Build, Test, and Deploy Backend
     runs-on: ubuntu-latest
 
     env:
@@ -46,24 +45,44 @@ jobs:
       - name: 📦 Install dependencies (including dev)
         env:
           NODE_ENV: development
-        run: npm ci
+        run: |
+          set -e
+          npm ci
 
-      - name: 🛠 Run DB migrations
-        run: npm run migrate --verbose
-
-      - name: Debug Env Vars
+      - name: Debug environment variables (non-sensitive)
         run: |
           echo "NODE_ENV=$NODE_ENV"
           echo "DB_HOST=$DB_HOST"
           echo "DB_USER=$DB_USER"
           echo "DB_NAME=$DB_NAME"
 
+      - name: Test DB connection
+        run: |
+          set -e
+          npm install mysql2
+          node -e "
+            const mysql = require('mysql2/promise');
+            mysql.createConnection({
+              host: process.env.DB_HOST,
+              user: process.env.DB_USER,
+              password: process.env.DB_PASSWORD,
+              database: process.env.DB_NAME,
+              port: process.env.DB_PORT,
+            }).then(() => console.log('DB connection successful'))
+              .catch(err => { console.error('DB connection failed:', err); process.exit(1); });
+          "
+
+      - name: 🛠 Run DB migrations
+        run: |
+          set -e
+          npm run migrate
+
       - name: 🧪 Run unit tests
         env:
           NODE_ENV: development
-        run: npx jest tests/unit --watchAll=false --runInBand
+        run: npx jest tests/unit --watchAll=false --runInBand --verbose
 
       - name: 🔌 Run integration tests
         env:
           NODE_ENV: development
-        run: npx jest --testPathPattern=tests/integration --watchAll=false --runInBand
+        run: npx jest --testPathPattern=tests/integration --watchAll=false --runInBand --verbose
