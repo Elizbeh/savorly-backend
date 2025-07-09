@@ -62,10 +62,6 @@ jobs:
         run: |
           mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
 
-      - name: 🧪 Show DB tables after migration
-        run: |
-          mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e "SHOW TABLES IN \`${DB_NAME}\`;"
-
         env:
           MYSQL_PWD: ${{ secrets.DB_PASSWORD }}
 
@@ -94,6 +90,11 @@ jobs:
 
       - name: 🔄 Run DB migrations
         run: npm run migrate
+
+      - name: 🧪 Show DB tables after migration
+        run: |
+          mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e "SHOW TABLES IN \`${DB_NAME}\`;"
+
 
       - name: 🌱 Seed the database
         run: npm run seed
