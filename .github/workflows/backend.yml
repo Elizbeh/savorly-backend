@@ -96,7 +96,7 @@ jobs:
         run: npm run migrate
 
       - name: 🌱 Seed the database
-        run: npm run migrate
+        run: npm run seed
 
       - name: 🧪 Run unit tests
         run: npm run test:unit
