@@ -2,54 +2,62 @@ import 'dotenv/config';
 import request from 'supertest';
 import bcrypt from 'bcrypt';
 import app from '../../app.js';
-import pool from '../../config/db';
-
+import pool from '../../config/db.js';
 
 console.log('AUTH TEST ENV DB_USER:', process.env.DB_USER);
 console.log('AUTH TEST ENV DB_PASSWORD:', process.env.DB_PASSWORD ? '******' : 'NOT SET');
 
 beforeAll(async () => {
-  // Disable foreign key checks
-  await pool.query('SET foreign_key_checks = 0');
+  const connection = await pool.getConnection();
+  try {
+    await connection.beginTransaction();
 
-  // Clean the database
-  await pool.query('TRUNCATE TABLE users');
-  await pool.query('TRUNCATE TABLE recipes');
+    // Clean database: delete from child tables first
+    await connection.query('DELETE FROM recipe_ingredients');
+    await connection.query('DELETE FROM saved_recipes');
+    await connection.query('DELETE FROM ratings');
+    await connection.query('DELETE FROM comments');
+    await connection.query('DELETE FROM recipes');
+    await connection.query('DELETE FROM users');
 
-  // Hash the password
-  const hashedPassword = await bcrypt.hash('Password123!', 10);
+    // Optionally reset auto-increment (for consistent test IDs)
+    await connection.query('ALTER TABLE users AUTO_INCREMENT = 1');
+    await connection.query('ALTER TABLE recipes AUTO_INCREMENT = 1');
 
-  // Insert a verified test user
-  await pool.query(
-  `INSERT INTO users (
-    email, password_hash, first_name, last_name, role,
-    verification_token, verification_token_expires_at,
-    is_verified
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-  [
-    'test@example.com',
-    hashedPassword,
-    'John',
-    'Doe',
-    'user',
-    null,
-    null,
-    1
-  ]
-);
+    // Insert test user
+    const hashedPassword = await bcrypt.hash('Password123!', 10);
+    await connection.query(
+      `INSERT INTO users (
+        email, password_hash, first_name, last_name, role,
+        verification_token, verification_token_expires_at,
+        is_verified
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        'test@example.com',
+        hashedPassword,
+        'John',
+        'Doe',
+        'user',
+        null,
+        null,
+        1
+      ]
+    );
 
+    // Insert test recipe for user ID 1
+    await connection.query(
+      'INSERT INTO recipes (title, description, user_id) VALUES (?, ?, ?)',
+      ['Test Recipe', 'Description', 1]
+    );
 
-
-  // Insert a test recipe for that user (user_id = 1)
-  await pool.query(
-    'INSERT INTO recipes (title, description, user_id) VALUES (?, ?, ?)',
-    ['Test Recipe', 'Description', 1]
-  );
-
-  // Re-enable foreign key checks
-  await pool.query('SET foreign_key_checks = 1');
+    await connection.commit();
+  } catch (err) {
+    await connection.rollback();
+    throw err;
+  } finally {
+    connection.release();
+  }
 });
-
 
 describe('User Authentication Tests', () => {
   it('should register a new user successfully', async () => {
@@ -70,23 +78,22 @@ describe('User Authentication Tests', () => {
   });
 
   it('should log in an existing user', async () => {
-  const loginData = {
-    email: 'test@example.com',
-    password: 'Password123!'
-  };
+    const loginData = {
+      email: 'test@example.com',
+      password: 'Password123!'
+    };
 
-  const response = await request(app)
-    .post('/api/auth/login')
-    .send(loginData);
+    const response = await request(app)
+      .post('/api/auth/login')
+      .send(loginData);
 
-  expect(response.status).toBe(200);
-  expect(response.headers['set-cookie']).toBeDefined();
+    expect(response.status).toBe(200);
+    expect(response.headers['set-cookie']).toBeDefined();
 
-  const cookies = response.headers['set-cookie'].join(';');
-  expect(cookies).toMatch(/authToken=/);
-  expect(cookies).toMatch(/refreshToken=/);
-});
-
+    const cookies = response.headers['set-cookie'].join(';');
+    expect(cookies).toMatch(/authToken=/);
+    expect(cookies).toMatch(/refreshToken=/);
+  });
 
   it('should return 401 for invalid login credentials', async () => {
     const loginData = {
