@@ -50,7 +50,7 @@ const isSecure = isGitHubPages || process.env.NODE_ENV === 'production';
       httpOnly: true,
       secure: isSecure,
       sameSite: isSecure ? 'None' : 'Lax',
-      maxAge: 60 * 60 * 1000, // 1 hour
+      maxAge: 60 * 60 * 1000,
       path: '/',
     });
 
