@@ -46,9 +46,7 @@ const runMigrations = async () => {
     console.log('Migrations executed successfully!');
   } catch (error) {
     console.error('Error running migrations:', error);
-  } finally {
-    pool.end();
-  }
+  } 
 };
 
-runMigrations();
+export default runMigrations;

@@ -1,23 +1,14 @@
-import 'dotenv/config';
+// jest.setup.js (or your test setup)
+import runMigrations from './migrations/runMigrations.js';
 import pool, { checkDbConnection } from './config/db.js';
 
-jest.setTimeout(60000); // 60s timeout for all tests
-
 beforeAll(async () => {
-  try {
-    await checkDbConnection();
-    console.log('✅ DB connection check passed before tests');
-  } catch (err) {
-    console.error('❌ DB connection check failed:', err);
-    throw err; // fail fast if DB not ready
-  }
+  await runMigrations();
+  await checkDbConnection();
+  console.log('✅ DB ready for tests');
 });
 
 afterAll(async () => {
-  try {
-    await pool.end();
-    console.log('✅ Database connection pool closed after tests');
-  } catch (error) {
-    console.error('❌ Error closing database pool:', error);
-  }
+  await pool.end();
+  console.log('✅ DB connection pool closed');
 });
