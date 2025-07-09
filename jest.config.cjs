@@ -1,4 +1,3 @@
-// jest.config.cjs
 module.exports = {
   testTimeout: 60000,
   transform: {
