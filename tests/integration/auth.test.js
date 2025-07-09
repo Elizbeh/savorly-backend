@@ -2,61 +2,57 @@ import 'dotenv/config';
 import request from 'supertest';
 import bcrypt from 'bcrypt';
 import app from '../../app.js';
-import pool from '../../config/db.js';
+import pool from '../../config/db';
 
 console.log('AUTH TEST ENV DB_USER:', process.env.DB_USER);
 console.log('AUTH TEST ENV DB_PASSWORD:', process.env.DB_PASSWORD ? '******' : 'NOT SET');
 
+let testUserId;
+
 beforeAll(async () => {
-  const connection = await pool.getConnection();
-  try {
-    await connection.beginTransaction();
+  // Disable foreign key checks
+  await pool.query('SET foreign_key_checks = 0');
 
-    // Clean database: delete from child tables first
-    await connection.query('DELETE FROM recipe_ingredients');
-    await connection.query('DELETE FROM saved_recipes');
-    await connection.query('DELETE FROM ratings');
-    await connection.query('DELETE FROM comments');
-    await connection.query('DELETE FROM recipes');
-    await connection.query('DELETE FROM users');
+  // Clean all tables
+  await pool.query('DELETE FROM recipe_ingredients');
+  await pool.query('DELETE FROM saved_recipes');
+  await pool.query('DELETE FROM ratings');
+  await pool.query('DELETE FROM comments');
+  await pool.query('DELETE FROM recipes');
+  await pool.query('DELETE FROM users');
 
-    // Optionally reset auto-increment (for consistent test IDs)
-    await connection.query('ALTER TABLE users AUTO_INCREMENT = 1');
-    await connection.query('ALTER TABLE recipes AUTO_INCREMENT = 1');
+  // Hash the password
+  const hashedPassword = await bcrypt.hash('Password123!', 10);
 
-    // Insert test user
-    const hashedPassword = await bcrypt.hash('Password123!', 10);
-    await connection.query(
-      `INSERT INTO users (
-        email, password_hash, first_name, last_name, role,
-        verification_token, verification_token_expires_at,
-        is_verified
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        'test@example.com',
-        hashedPassword,
-        'John',
-        'Doe',
-        'user',
-        null,
-        null,
-        1
-      ]
-    );
+  // Insert a verified test user and get the inserted ID
+  const [userResult] = await pool.query(
+    `INSERT INTO users (
+      email, password_hash, first_name, last_name, role,
+      verification_token, verification_token_expires_at,
+      is_verified
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      'test@example.com',
+      hashedPassword,
+      'John',
+      'Doe',
+      'user',
+      null,
+      null,
+      1
+    ]
+  );
 
-    // Insert test recipe for user ID 1
-    await connection.query(
-      'INSERT INTO recipes (title, description, user_id) VALUES (?, ?, ?)',
-      ['Test Recipe', 'Description', 1]
-    );
+  testUserId = userResult.insertId;
 
-    await connection.commit();
-  } catch (err) {
-    await connection.rollback();
-    throw err;
-  } finally {
-    connection.release();
-  }
+  // Insert a test recipe for the inserted user
+  await pool.query(
+    'INSERT INTO recipes (title, description, user_id) VALUES (?, ?, ?)',
+    ['Test Recipe', 'Description', testUserId]
+  );
+
+  // Re-enable foreign key checks
+  await pool.query('SET foreign_key_checks = 1');
 });
 
 describe('User Authentication Tests', () => {
