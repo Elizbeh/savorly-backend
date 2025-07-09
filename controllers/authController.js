@@ -47,7 +47,7 @@ export const registerUser = async (req, res) => {
       verification_token_expires_at: new Date(Date.now() + 3600000), // 1 hour
     });
 
-    const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${encodeURIComponent(
+    const verificationUrl = `${process.env.CLIENT_URL}/savorly-frontend/#/verify-email?token=${encodeURIComponent(
       verification_token
     )}`;
 
@@ -93,7 +93,7 @@ export const resendVerificationEmail = async (req, res) => {
 
     await updateUserVerificationToken(user.id, verificationToken, tokenExpiration);
 
-    const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${encodeURIComponent(
+    const verificationUrl = `${process.env.CLIENT_URL}/savorly-frontend/#/verify-email?token=${encodeURIComponent(
       verificationToken
     )}`;
 
