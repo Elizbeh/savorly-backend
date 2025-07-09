@@ -42,6 +42,16 @@ const runMigrations = async () => {
       );
       console.log('Added column verification_token_expires_at');
     }
+    if (!(await columnExists('user_profiles', 'first_name'))) {
+      await pool.query('ALTER TABLE user_profiles ADD COLUMN first_name VARCHAR(255)');
+      console.log('Added column first_name to user_profiles');
+    }
+
+    if (!(await columnExists('user_profiles', 'last_name'))) {
+      await pool.query('ALTER TABLE user_profiles ADD COLUMN last_name VARCHAR(255)');
+      console.log('Added column last_name to user_profiles');
+    }
+
 
     console.log('Migrations executed successfully!');
   } catch (error) {
