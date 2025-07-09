@@ -1,4 +1,4 @@
-// jest.setup.js (or your test setup)
+// jest.setup.js
 import runMigrations from './migrations/runMigrations.js';
 import pool, { checkDbConnection } from './config/db.js';
 
