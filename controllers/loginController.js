@@ -42,8 +42,9 @@ export const loginUser = async (req, res) => {
       { expiresIn: '7d' }
     );
 
-    // Determine if secure cookies should be set
-    const isSecure = process.env.NODE_ENV === 'production' || process.env.LOCAL_HTTPS === 'true';
+    const origin = req.get('origin');
+const isGitHubPages = origin && origin.includes('github.io');
+const isSecure = isGitHubPages || process.env.NODE_ENV === 'production';
 
     res.cookie('authToken', accessToken, {
       httpOnly: true,

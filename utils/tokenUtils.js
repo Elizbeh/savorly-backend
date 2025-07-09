@@ -1,9 +1,10 @@
 import logger from "../config/logger.js";
 
 export const setRefreshTokenCookie = (res, refreshToken, isSecure) => {
-  if (!process.env.NODE_ENV) {
-    logger.warn('NODE_ENV is not set! Please ensure it is properly configured.');
-  }
+  const origin = req.get('origin');
+const isGitHubPages = origin && origin.includes('github.io');
+const isSecure = isGitHubPages || process.env.NODE_ENV === 'production';
+
 
   res.cookie('refreshToken', refreshToken, {
     httpOnly: true,
