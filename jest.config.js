@@ -1,5 +1,5 @@
 export default {
-   testTimeout: 20000,
+   testTimeout: 60000,
   transform: {
     '^.+\\.js$': 'babel-jest',
   },

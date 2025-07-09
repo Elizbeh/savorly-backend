@@ -71,9 +71,5 @@ describe('Ingredient Model', () => {
       );
     });
   });
-   afterAll(async () => {
-    if (typeof pool.end === 'function') {
-      await pool.end();
-    }
-  });
+   
 });
