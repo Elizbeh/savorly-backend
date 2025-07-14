@@ -1,6 +1,6 @@
 import { getAllUsersFromDB, deleteUserFromDB } from '../models/admin.js';
 import { getUserById } from '../models/users.js';
-
+import logger from '../config/logger.js';
 
 export const getAllUsers = async (req, res) => {
     try {
@@ -9,10 +9,10 @@ export const getAllUsers = async (req, res) => {
         }
   
         const users = await getAllUsersFromDB();
-        console.log('Fetched users:', users); // Log to debug
+        logger.info('Fetched users:', users)
         res.json(users);
     } catch (err) {
-        console.error('Error fetching users:', err); // Log error
+        logger.error('Error fetching users:', err); 
         res.status(500).json({ message: 'Internal server error' });
     }
   };

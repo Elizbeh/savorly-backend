@@ -7,7 +7,7 @@ export const validateRegister = (req, res, next) => {
         password: Joi.string().min(8).pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')).required(),
         first_name: Joi.string().min(2).max(50).required(),
         last_name: Joi.string().min(2).max(50).required(),
-        role: Joi.string().valid('admin', 'user').optional(),  // Allow role to be 'admin' or 'user', or leave it out
+        role: Joi.string().valid('admin', 'user').optional(),
     });
 
     const { error } = schema.validate(req.body);

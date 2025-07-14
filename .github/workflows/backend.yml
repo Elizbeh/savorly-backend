@@ -95,7 +95,6 @@ jobs:
         run: |
           mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e "SHOW TABLES IN \`${DB_NAME}\`;"
 
-
       - name: 🌱 Seed the database
         run: npm run seed
 

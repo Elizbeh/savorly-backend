@@ -28,7 +28,7 @@ const runMigrations = async () => {
       await pool.query(statement);
     }
 
-    // Step 2: Add missing columns to users table
+    //Add missing columns to users table
     if (!(await columnExists('users', 'verification_token'))) {
       await pool.query(
         'ALTER TABLE users ADD COLUMN verification_token VARCHAR(255) NULL'

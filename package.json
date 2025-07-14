@@ -12,7 +12,7 @@
     "test": "cross-env NODE_ENV=development jest --watch",
     "test:unit": "cross-env NODE_ENV=development jest tests/unit",
     "test:integration": "cross-env NODE_ENV=development jest --testPathPattern=tests/integration --detectOpenHandles",
-    "test:ci": "cross-env NODE_ENV=development jest"
+    "test:ci": "cross-env NODE_ENV=development jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -34,7 +34,8 @@
     "node-cron": "^3.0.3",
     "nodemailer": "^6.10.0",
     "streamifier": "^0.1.1",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "xss-clean": "^0.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",

@@ -1,13 +1,13 @@
 // tests/unit/email.test.js
 import nodemailer from 'nodemailer';
-import { sendEmail } from '../../services/emailService.js';  // Adjust path as needed
+import { sendEmail } from '../../services/emailService.js';
 import logger from '../../config/logger.js';
 
 jest.mock('../../config/logger', () => ({
   __esModule: true,
   default: {
     info: jest.fn(),
-    error: jest.fn(), // Add if your code uses error too
+    error: jest.fn(),
   },
 }));
 

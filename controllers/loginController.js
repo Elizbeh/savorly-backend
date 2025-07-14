@@ -43,8 +43,8 @@ export const loginUser = async (req, res) => {
     );
 
     const origin = req.get('origin');
-const isGitHubPages = origin && origin.includes('github.io');
-const isSecure = isGitHubPages || process.env.NODE_ENV === 'production';
+    const isGitHubPages = origin && origin.includes('github.io');
+    const isSecure = isGitHubPages || process.env.NODE_ENV === 'production';
 
     res.cookie('authToken', accessToken, {
       httpOnly: true,
