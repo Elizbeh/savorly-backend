@@ -7,8 +7,8 @@ import { loginUser } from '../controllers/loginController.js';
 import { validateRegister, validateLogin } from '../middleware/validateInput.js';
 import { authenticate } from '../middleware/authenticate.js';
 import rateLimit from 'express-rate-limit';
-import { isAdmin } from '../middleware/isAdmin.js';
 
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 

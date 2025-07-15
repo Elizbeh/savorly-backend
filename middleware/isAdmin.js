@@ -1,5 +1,4 @@
-import { authenticate } from '../middleware/authenticate.js';
-
+import pool from '../config/db.js'
 export const promoteUserToAdmin = async (req, res) => {
     const targetUserId = req.params.id;
 

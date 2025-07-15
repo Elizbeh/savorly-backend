@@ -39,7 +39,7 @@ export async function checkDbConnection() {
     conn.release();
   } catch (err) {
     logger.error('Database connection error', { message: err.message, stack: err.stack });
-    throw err; // Optional: rethrow if you want to fail startup/tests on connection error
+    throw err;
   }
 }
 
