@@ -61,6 +61,7 @@ app.use(cookieParser());
 
 logger.info('Middlewares applied: CORS, Helmet, JSON Parser, Cookie Parser');
 
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/recipes', recipeRoutes);

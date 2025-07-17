@@ -1,29 +1,27 @@
 import multer from 'multer';
 import path from 'path';
 
-// Define the file types and file size limits
-const fileTypes = /jpeg|jpg|png|gif/;
-const fileSizeLimit = 20 * 1024 * 1024;
+// Allowed image types
+const allowedTypes = /jpeg|jpg|png|gif/;
+const maxFileSize = 5 * 1024 * 1024; // 5MB
 
 const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
-  console.log('Uploading file:', file.mimetype);
-  // Check the file type and extension
-  const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-  
-  if (extname) {
-    return cb(null, true);
+  const isImage = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  const isMime = allowedTypes.test(file.mimetype);
+
+  if (isImage && isMime) {
+    cb(null, true);
   } else {
-    console.log('Invalid file type:', file.originalname);
-    return cb(new Error('Invalid file type'));
+    cb(new Error('Invalid file type. Only JPG, PNG, GIF allowed.'));
   }
 };
 
 const upload = multer({
-  storage: storage,
-  limits: { fileSize: fileSizeLimit },
-  fileFilter: fileFilter
+  storage,
+  limits: { fileSize: maxFileSize },
+  fileFilter,
 });
 
 export default upload;

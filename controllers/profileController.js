@@ -1,7 +1,5 @@
-import cloudinary from '../config/cloudinaryConfig.js';
-import streamifier from 'streamifier';
 import { getProfileByUserId, updateProfile } from '../models/profile.js';
-
+import streamUpload from '../utils/streamUpload.js'; 
 export const getUserProfile = async (req, res) => {
   const userId = req.user?.id;
 
@@ -49,17 +47,9 @@ export const uploadAvatar = async (req, res) => {
   }
 
   try {
-    const stream = cloudinary.v2.uploader.upload_stream(
-      { folder: 'user_avatars', resource_type: 'image' },
-      (error, result) => {
-        if (error) {
-          return res.status(500).json({ message: 'Upload failed', error });
-        }
-        return res.json({ avatar_url: result.secure_url });
-      }
-    );
-    streamifier.createReadStream(req.file.buffer).pipe(stream);
+    const result = await streamUpload(req.file.buffer, 'user_avatars');
+    return res.json({ avatar_url: result.secure_url });
   } catch (error) {
-    return res.status(500).json({ message: 'Error uploading image', error });
+    return res.status(500).json({ message: 'Error uploading avatar', error: error.message });
   }
 };

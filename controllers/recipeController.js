@@ -20,8 +20,9 @@ import {
 import { addRatingToRecipe } from '../models/ratings.js';
 import pool from '../config/db.js';
 import cloudinary from '../config/cloudinaryConfig.js';
-import streamifier from 'streamifier';
 import logger from '../config/logger.js';
+import streamUpload from '../utils/streamUpload.js';
+
 
 // Create a new recipe
 export const createRecipe = async (req, res) => {
@@ -59,22 +60,18 @@ export const createRecipe = async (req, res) => {
     };
 
     if (req.file) {
-      const stream = cloudinary.v2.uploader.upload_stream(
-        { folder: 'recipe_images', resource_type: 'image' },
-        async (error, result) => {
-          if (error) {
-            logger.error('Image upload failed: ' + error.message);
-            return res.status(500).json({ message: 'Image upload failed', error });
-          }
-          await handleCreation(result.secure_url);
-        }
-      );
-      streamifier.createReadStream(req.file.buffer).pipe(stream);
+      try {
+        const uploadResult = await streamUpload(req.file.buffer, 'recipe_images');
+        await handleCreation(uploadResult.secure_url);
+      } catch (uploadErr) {
+        logger.error('Image upload failed: ' + uploadErr.message);
+        return res.status(500).json({ message: 'Image upload failed', error: uploadErr.message });
+      }
     } else {
       await handleCreation(null);
     }
   } catch (error) {
-    logger.error('Error creating recipe: ' + error.message); 
+    logger.error('Error creating recipe: ' + error.message);
     res.status(500).json({ message: 'Error creating recipe', error: error.message });
   }
 };
@@ -104,17 +101,13 @@ export const updateRecipe = async (req, res) => {
     };
 
     if (req.file) {
-      const stream = cloudinary.v2.uploader.upload_stream(
-        { folder: 'recipe_images', resource_type: 'image' },
-        async (error, result) => {
-          if (error) {
-            logger.error('Image upload failed: ' + error.message);
-            return res.status(500).json({ message: 'Upload failed', error });
-          }
-          await performUpdate(result.secure_url);
-        }
-      );
-      streamifier.createReadStream(req.file.buffer).pipe(stream);
+      try {
+        const uploadResult = await streamUpload(req.file.buffer, 'recipe_images');
+        await performUpdate(uploadResult.secure_url);
+      } catch (uploadErr) {
+        logger.error('Image upload failed: ' + uploadErr.message);
+        return res.status(500).json({ message: 'Image upload failed', error: uploadErr.message });
+      }
     } else {
       await performUpdate(null);
     }
@@ -123,6 +116,7 @@ export const updateRecipe = async (req, res) => {
     res.status(500).json({ message: 'Error updating recipe', error: error.message });
   }
 };
+
 
 // Get a recipe by ID
 export const getRecipeById = async (req, res) => {
