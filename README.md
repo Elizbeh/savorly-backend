@@ -18,7 +18,7 @@ The API is deployed on **Render**, with a fully automated **CI/CD pipeline via G
 
 ## 🧱 Architecture Overview
 
-```text
+```
 savorly-backend/
 ├── config/
 │   ├── db.js                # MySQL/TiDB connection pool
@@ -64,7 +64,8 @@ savorly-backend/
 │   └── integration/
 │
 ├── server.js                # Express app entry point
-└── package.json `
+└── package.json
+```
 
 * * * * *
 
@@ -203,18 +204,18 @@ Your API will be available at\
 🧩 API Routes Overview
 ----------------------
 
-| Endpoint | Method | Description | Auth |
-| --- | --- | --- | --- |
-| `/api/auth/register` | POST | Register new user | No |
-| `/api/auth/login` | POST | Login and receive token | No |
-| `/api/auth/verify-email` | GET | Email verification | No |
-| `/api/auth/user` | GET | Get logged user | ✅ |
-| `/api/recipes` | GET | Get all recipes | No |
-| `/api/recipes/create` | POST | Create a recipe | ✅ |
-| `/api/profile` | GET/PUT | Get or update profile | ✅ |
-| `/api/saved` | GET/POST/DELETE | Manage saved recipes | ✅ |
-| `/api/categories` | GET/POST | Fetch or create category | ✅ (POST admin) |
-| `/api/admin/users` | GET/DELETE/PUT | Manage users | ✅ (admin only) |
+| Endpoint                | Method            | Description             | Auth             |
+| ------------------------| ----------------- | ------------------------| ---------------- |
+| `/api/auth/register`    | POST              | Register new user       | No               |
+| `/api/auth/login`       | POST              | Login and receive token | No               |
+| `/api/auth/verify-email`| GET               | Email verification      | No               |
+| `/api/auth/user`        | GET               | Get logged user         | ✅               |
+| `/api/recipes`          | GET               | Get all recipes         | No               |
+| `/api/recipes/create`   | POST              | Create a recipe         | ✅               |
+| `/api/profile`          | GET/PUT           | Get or update profile   | ✅               |
+| `/api/saved`            | GET/POST/DELETE   | Manage saved recipes    | ✅               |
+| `/api/categories`       | GET/POST          | Fetch or create category| ✅ (POST admin)  |
+| `/api/admin/users`      | GET/DELETE/PUT    | Manage users            | ✅ (admin only)  |
 
 * * * * *
 
