@@ -1,7 +1,7 @@
 🧩 README for `savorly-backend`
 -------------------------------
 
-`# 🍳 Savorly Backend
+# 🍳 Savorly Backend
 
 Savorly Backend is the secure API powering **Savorly**, a full-stack recipe management web application.
 It provides all backend logic --- authentication, user roles, recipe CRUD, image uploads, email verification, saved recipes, and more --- built with **Node.js**, **Express**, and **MySQL (TiDB)**.
