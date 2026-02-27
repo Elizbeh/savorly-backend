@@ -42,7 +42,8 @@ const dbTest = async () => {
 };
 
 // Jest test
-it('should perform an async database test', async () => {
-  await dbTest(); // Running the async db test function
+it('should return 2 from test query', async () => {
+  const [rows] = await pool.query('SELECT 1 + 1 AS result');
+  expect(rows[0].result).toBe(2);
 });
 

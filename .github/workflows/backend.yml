@@ -55,5 +55,5 @@ jobs:
       - name: Run migrations
         run: npm run migrate
 
-      - name: Run tests
-        run: npm test
+      - name: Run tests (CI mode)
+        run: npm run test:ci
