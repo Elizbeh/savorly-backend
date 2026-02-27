@@ -8,7 +8,7 @@ const requireSSL = process.env.DB_REQUIRE_SSL === 'true';
 console.log('DB_NAME:', process.env.DB_NAME);
 console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
 
-
+// Only create the pool, do NOT test the connection here
 const pool = mysql
   .createPool({
     host: process.env.DB_HOST || '127.0.0.1',
@@ -30,11 +30,7 @@ const pool = mysql
   })
   .promise();
 
-
-/**
- * Function to check database connection.
- * Call this explicitly in app start or tests before running queries.
- */
+// Explicit function to check DB connection
 export async function checkDbConnection() {
   try {
     const conn = await pool.getConnection();
@@ -46,9 +42,5 @@ export async function checkDbConnection() {
   }
 }
 
-pool.query("SELECT 1")
-  .then(() => console.log("✅ Node.js connected to MySQL"))
-  .catch(err => console.error("❌ Node.js MySQL connection FAILED:", err));
-
-
+// Export pool only, don't auto-run queries
 export default pool;
