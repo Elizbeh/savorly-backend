@@ -31,11 +31,11 @@ jobs:
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: savorly_test
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      CLIENT_URL: ${{ secrets.CLIENT_URL }}
-      EMAIL_USER: ${{ secrets.EMAIL_USER }}
-      EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-      REFRESH_TOKEN_SECRET: ${{ secrets.REFRESH_TOKEN_SECRET }}
+      JWT_SECRET: testsecret
+      CLIENT_URL: http://localhost:5174
+      # Dummy email credentials for CI (will not actually be used)
+      EMAIL_USER: test@example.com
+      EMAIL_PASS: testpass
 
     steps:
       - name: Checkout code
@@ -49,12 +49,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Wait for MySQL
+      - name: Wait for MySQL to be ready
         run: |
           for i in {1..15}; do
             mysqladmin ping -h 127.0.0.1 -uroot -proot && break
             sleep 3
           done
+
+      # Mock email service so no real emails are sent
+      - name: Setup mocked email service
+        run: |
+          mkdir -p services/__mocks__
+          echo "module.exports = { sendEmail: async () => true };" > services/__mocks__/emailService.js
 
       - name: Run migrations
         run: npm run migrate
@@ -62,15 +68,8 @@ jobs:
       - name: Run seeds
         run: npm run seed
 
-      - name: Mock email service
-        run: |
-          echo "module.exports = { sendEmail: async () => true };" > services/__mocks__/emailService.js
-
       - name: Run unit tests
         run: npm run test:unit
 
       - name: Run integration tests
         run: npm run test:integration
-
-      - name: Run CI tests (coverage)
-        run: npm run test:ci

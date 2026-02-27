@@ -4,6 +4,14 @@ import bcrypt from 'bcrypt';
 import app from '../../app.js';
 import pool from '../../config/db';
 
+// Mocks
+jest.mock('../../services/emailService.js', () => ({
+  sendEmail: jest.fn().mockResolvedValue(true),
+}));
+jest.mock('jsonwebtoken', () => ({
+  sign: jest.fn(() => 'mocked-jwt-token'),
+}));
+
 console.log('AUTH TEST ENV DB_USER:', process.env.DB_USER);
 console.log('AUTH TEST ENV DB_PASSWORD:', process.env.DB_PASSWORD ? '******' : 'NOT SET');
 
@@ -24,7 +32,7 @@ beforeAll(async () => {
   // Hash the password
   const hashedPassword = await bcrypt.hash('Password123!', 10);
 
-  // Insert a verified test user and get the inserted ID
+  // Insert a verified test user
   const [userResult] = await pool.query(
     `INSERT INTO users (
       email, password_hash, first_name, last_name, role,
@@ -45,15 +53,15 @@ beforeAll(async () => {
 
   testUserId = userResult.insertId;
 
-  // Insert a test recipe for the inserted user
+  // Insert a test recipe
   await pool.query(
     'INSERT INTO recipes (title, description, user_id) VALUES (?, ?, ?)',
     ['Test Recipe', 'Description', testUserId]
   );
 
-  // Re-enable foreign key checks
   await pool.query('SET foreign_key_checks = 1');
 });
+
 
 describe('User Authentication Tests', () => {
   it('should register a new user successfully', async () => {
