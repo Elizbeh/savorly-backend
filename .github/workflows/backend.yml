@@ -1,37 +1,59 @@
-name: Backend CI/CD
+name: Backend CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: savorly_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     env:
       NODE_ENV: test
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      DB_HOST: dummy
+      DB_HOST: 127.0.0.1
       DB_PORT: 3306
-      DB_USER: dummy
-      DB_PASSWORD: dummy
-      DB_NAME: dummy
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: savorly_test
+      JWT_SECRET: testsecret
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm install
 
-      # Run Jest tests — unit, integration, CI
-      - name: Run unit tests
-        run: npm run test:unit
+      - name: Wait for MySQL
+        run: |
+          for i in {1..10}; do
+            mysqladmin ping -h 127.0.0.1 -uroot -proot && break
+            sleep 3
+          done
 
-      - name: Run integration tests
-        run: npm run test:integration
+      - name: Run migrations
+        run: npm run migrate
 
-      - name: Run full coverage tests
-        run: npm run test:ci
+      - name: Run tests
+        run: npm test
