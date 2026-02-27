@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">78.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/10</span>
+                <span class='fraction'>11/14</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">62.5% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>5/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">66.66% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>4/6</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">78.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/10</span>
+                <span class='fraction'>11/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,7 +109,15 @@
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,8 +125,11 @@
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,6 +163,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,17 +179,20 @@ const isProd = process.env.NODE_ENV === 'production';
 const requireSSL = process.env.DB_REQUIRE_SSL === 'true';
 &nbsp;
 console.log('DB_NAME:', process.env.DB_NAME);
+console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+&nbsp;
 &nbsp;
 const pool = mysql
   .createPool({
-    host: process.env.DB_HOST,
+    host: process.env.DB_HOST || <span class="branch-1 cbranch-no" title="branch not covered" >'127.0.0.1',</span>
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT ? <span class="branch-0 cbranch-no" title="branch not covered" >Number(process.env.DB_PORT) </span>: undefined,
+    port: process.env.DB_PORT ? <span class="branch-0 cbranch-no" title="branch not covered" >Number(process.env.DB_PORT) </span>: 3306,
     charset: 'utf8mb4',
     waitForConnections: true,
     connectTimeout: 30000,
+    socketPath: undefined,
     ...(isProd || requireSSL
       ? <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
           ssl: {
@@ -196,9 +215,14 @@ export async function checkDbConnection() {
     conn.release();
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    logger.error('Database connection error', { message: err.message, stack: err.stack });</span>
-<span class="cstat-no" title="statement not covered" >    throw err; </span>// Optional: rethrow if you want to fail startup/tests on connection error
+<span class="cstat-no" title="statement not covered" >    throw err;</span>
   }
 }
+&nbsp;
+pool.query("SELECT 1")
+  .then(() =&gt; console.log("✅ Node.js connected to MySQL"))
+  .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; <span class="cstat-no" title="statement not covered" >console.error("❌ Node.js MySQL connection FAILED:", err))</span>;
+&nbsp;
 &nbsp;
 export default pool;
 &nbsp;</pre></td></tr></table></pre>
@@ -208,7 +232,7 @@ export default pool;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-14T13:50:04.677Z
+                at 2026-02-27T12:58:14.167Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

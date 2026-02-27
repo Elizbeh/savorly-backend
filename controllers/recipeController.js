@@ -141,6 +141,17 @@ export const getRecipeById = async (req, res) => {
   }
 };
 
+export const getUserRecipes = async (req, res) => {
+  try {
+    const userId = req.user.id
+    const recipes = await getRecipes({userId})
+    res.status(200).json(recipes)
+  } catch (error) {
+    res.status(500).json({message: 'Error fetching user recipes', error: error.message});
+  }
+
+}
+
 // Delete a recipe
 export const deleteRecipe = async (req, res) => {
   const recipeId = req.params.id;

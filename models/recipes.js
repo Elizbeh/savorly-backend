@@ -1,7 +1,7 @@
 import pool from '../config/db.js';
 import logger from '../config/logger.js';
 
-// Helper function to handle database errors
+// Handle database errors
 const handleDatabaseError = (error, message = 'Database error') => {
   logger.error(`${message}: ${error.message}`, { stack: error.stack });
   throw new Error(message);
@@ -21,9 +21,9 @@ export const create = async ({ title, description, userId, imageUrl, prepTime, c
   }
 };
 
-// Get all recipes with optional category filter
+// Get all recipes with filters
 export const getRecipes = async (filters = {}) => {
-  const { categoryId } = filters;
+  const { categoryId, userId } = filters;
   try {
     let recipes;
     if (categoryId) {
@@ -35,6 +35,11 @@ export const getRecipes = async (filters = {}) => {
         [categoryId]
       );
       recipes = filtered;
+    } else if (userId) {
+      const [userRecipes] = await pool.query(
+        'SELECT * FROM recipes WHERE user_id = ?', [userId]
+      );
+      recipes = userRecipes;
     } else {
       const [all] = await pool.query('SELECT * FROM recipes');
       recipes = all;

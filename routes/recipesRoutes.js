@@ -6,7 +6,8 @@ import {
   updateRecipe,
   deleteRecipe,
   addCommentToRecipeHandler,
-  addRatingToRecipeHandler
+  addRatingToRecipeHandler,
+  getUserRecipes
 } from '../controllers/recipeController.js';
 import { authenticate } from '../middleware/authenticate.js';
 import upload from '../middleware/upload.js';
@@ -14,6 +15,7 @@ import upload from '../middleware/upload.js';
 const router = express.Router();
 
 router.post('/create', authenticate, upload.single('image'), createRecipe);
+router.get('/user', authenticate, getUserRecipes);
 router.get('/', getAllRecipes);
 router.get('/:id', getRecipeById);
 router.put('/:id', authenticate, upload.single('image'), updateRecipe);

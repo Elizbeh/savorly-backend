@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.57% </span>
+                <span class="strong">9.37% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/35</span>
+                <span class='fraction'>3/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.67% </span>
+                <span class="strong">10.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/31</span>
+                <span class='fraction'>3/28</span>
             </div>
         
             
@@ -117,20 +117,7 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -180,23 +167,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import cloudinary from '../config/cloudinaryConfig.js';
-import streamifier from 'streamifier';
-import { getProfileByUserId, updateProfile } from '../models/profile.js';
-&nbsp;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getProfileByUserId, updateProfile } from '../models/profile.js';
+import streamUpload from '../utils/streamUpload.js'; 
 export const getUserProfile = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
   const userId = <span class="cstat-no" title="statement not covered" >req.user?.id;</span>
 &nbsp;
@@ -244,28 +220,19 @@ export const uploadAvatar = <span class="fstat-no" title="function not covered" 
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  try {</span>
-    const stream = <span class="cstat-no" title="statement not covered" >cloudinary.v2.uploader.upload_stream(</span>
-      { folder: 'user_avatars', resource_type: 'image' },
-<span class="fstat-no" title="function not covered" >      (e</span>rror, result) =&gt; {
-<span class="cstat-no" title="statement not covered" >        if (error) {</span>
-<span class="cstat-no" title="statement not covered" >          return res.status(500).json({ message: 'Upload failed', error });</span>
-        }
-<span class="cstat-no" title="statement not covered" >        return res.json({ avatar_url: result.secure_url });</span>
-      }
-    );
-<span class="cstat-no" title="statement not covered" >    streamifier.createReadStream(req.file.buffer).pipe(stream);</span>
+    const result = <span class="cstat-no" title="statement not covered" >await streamUpload(req.file.buffer, 'user_avatars');</span>
+<span class="cstat-no" title="statement not covered" >    return res.json({ avatar_url: result.secure_url });</span>
   } catch (error) {
-<span class="cstat-no" title="statement not covered" >    return res.status(500).json({ message: 'Error uploading image', error });</span>
+<span class="cstat-no" title="statement not covered" >    return res.status(500).json({ message: 'Error uploading avatar', error: error.message });</span>
   }
-};
-&nbsp;</pre></td></tr></table></pre>
+};</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-14T13:50:04.677Z
+                at 2026-02-27T12:58:14.167Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

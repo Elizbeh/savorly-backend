@@ -6,71 +6,32 @@ on:
       - master
 
 jobs:
-  build-test-deploy:
+  test:
     runs-on: ubuntu-latest
-
     env:
-      NODE_ENV: development
-      DB_REQUIRE_SSL: true
+      NODE_ENV: test
       DB_HOST: ${{ secrets.DB_HOST }}
       DB_PORT: ${{ secrets.DB_PORT }}
       DB_USER: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_NAME: ${{ secrets.DB_NAME }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      CLIENT_URL: ${{ secrets.CLIENT_URL }}
-      EMAIL_USER: ${{ secrets.EMAIL_USER }}
-      EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-      REFRESH_TOKEN_SECRET: ${{ secrets.REFRESH_TOKEN_SECRET }}
-      CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-      CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-      CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-      CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
-      LOCAL_HTTPS: false
 
     steps:
-      - name: 🧾 Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: ⚙️ Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: 💾 Cache Node.js dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - run: npm ci
 
-      - name: 📦 Install dependencies (including dev)
-        run: npm ci
-
-      - name: 🐛 Debug environment variables (non-sensitive)
-        run: |
-          echo "NODE_ENV=$NODE_ENV"
-          echo "DB_HOST=$DB_HOST"
-          echo "DB_USER=$DB_USER"
-          echo "DB_NAME=$DB_NAME"
-
-      - name: 🐛 Debug env in test step
-        run: env | grep DB_NAME
-
-      - name: 🛠️ Create DB if not exists
-        run: |
-          mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
-
-        env:
-          MYSQL_PWD: ${{ secrets.DB_PASSWORD }}
-
-      - name: 🧪 Test DB connection
+      - name: Test DB connection
         run: |
           node -e "
             import('mysql2/promise').then(async mysql => {
               try {
-                const connection = await mysql.createConnection({
+                const conn = await mysql.createConnection({
                   host: process.env.DB_HOST,
                   user: process.env.DB_USER,
                   password: process.env.DB_PASSWORD,
@@ -78,9 +39,8 @@ jobs:
                   port: process.env.DB_PORT,
                   ssl: { rejectUnauthorized: true }
                 });
-                console.log('✅ DB connection successful');
-                await connection.end();
-                process.exit(0);
+                console.log('✅ DB connection OK');
+                await conn.end();
               } catch (err) {
                 console.error('❌ DB connection failed:', err.message);
                 process.exit(1);
@@ -88,18 +48,14 @@ jobs:
             });
           "
 
-      - name: 🔄 Run DB migrations
+      - name: Run migrations
         run: npm run migrate
 
-      - name: 🧪 Show DB tables after migration
-        run: |
-          mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e "SHOW TABLES IN \`${DB_NAME}\`;"
-
-      - name: 🌱 Seed the database
+      - name: Run seeds
         run: npm run seed
 
-      - name: 🧪 Run unit tests
+      - name: Run unit tests
         run: npm run test:unit
 
-      - name: 🔌 Run integration tests
+      - name: Run integration tests
         run: npm run test:integration
