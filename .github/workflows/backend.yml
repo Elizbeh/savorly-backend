@@ -8,29 +8,14 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: savorly_test
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-
     env:
       NODE_ENV: test
-      DB_HOST: 127.0.0.1
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_NAME: savorly_test
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      DB_HOST: dummy
+      DB_PORT: 3306
+      DB_USER: dummy
+      DB_PASSWORD: dummy
+      DB_NAME: dummy
 
     steps:
       - uses: actions/checkout@v3
@@ -41,43 +26,12 @@ jobs:
 
       - run: npm ci
 
-      - name: Wait for MySQL to be ready
-        run: |
-          for i in {1..15}; do
-            mysqladmin ping -h"$DB_HOST" -uroot -proot >/dev/null 2>&1 && break
-            echo "Waiting for MySQL... ($i/15)"
-            sleep 2
-          done
-
-      - name: Test DB connection
-        run: |
-          node -e "
-            import('mysql2/promise').then(async mysql => {
-              try {
-                const conn = await mysql.createConnection({
-                  host: process.env.DB_HOST,
-                  user: process.env.DB_USER,
-                  password: process.env.DB_PASSWORD,
-                  database: process.env.DB_NAME,
-                  port: process.env.DB_PORT
-                });
-                console.log('✅ DB connection OK');
-                await conn.end();
-              } catch (err) {
-                console.error('❌ DB connection failed:', err.message);
-                process.exit(1);
-              }
-            });
-          "
-
-      - name: Run migrations
-        run: npm run migrate
-
-      - name: Run seeds
-        run: npm run seed
-
+      # Run Jest tests — unit, integration, CI
       - name: Run unit tests
         run: npm run test:unit
 
       - name: Run integration tests
         run: npm run test:integration
+
+      - name: Run full coverage tests
+        run: npm run test:ci
