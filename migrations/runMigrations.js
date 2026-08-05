@@ -73,13 +73,13 @@ export async function runMigrations() {
   } catch (error) {
     console.error('❌ Error running migrations:', error);
     process.exitCode = 1;
-  } finally {
-    await pool.end();
-  }
+  } 
 }
 
-// Execute only when this file is run directly
+// Execute when running: npm run migrate
 if (import.meta.url === `file://${process.argv[1]}`) {
-  console.log("🚀 runMigrations() started");
+  console.log('🚀 runMigrations() started');
   runMigrations();
 }
+
+export default runMigrations;
