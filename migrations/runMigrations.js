@@ -14,11 +14,10 @@ async function columnExists(table, column) {
   return rows.length > 0;
 }
 
-export async function runMigrations() {
+export async function runMigrations({ closeConnection = false } = {}) {
   try {
     console.log('🚀 Starting database migrations...');
 
-    // Step 1: Create tables from SQL file (if they don't exist)
     const sqlPath = path.join(__dirname, 'createTables.sql');
     let sql = await fs.readFile(sqlPath, 'utf8');
     sql = sql.replace(/\r\n/g, '\n');
@@ -33,55 +32,66 @@ export async function runMigrations() {
         statement.trim().slice(0, 80),
         '...'
       );
+
       await pool.query(statement);
     }
 
-    // Add missing columns to users table
+
     if (!(await columnExists('users', 'verification_token'))) {
-      await pool.query(`
-        ALTER TABLE users
-        ADD COLUMN verification_token VARCHAR(255) NULL
-      `);
-      console.log('✅ Added column verification_token');
+      await pool.query(
+        'ALTER TABLE users ADD COLUMN verification_token VARCHAR(255) NULL'
+      );
+      console.log('✅ Added verification_token');
     }
+
 
     if (!(await columnExists('users', 'verification_token_expires_at'))) {
-      await pool.query(`
-        ALTER TABLE users
-        ADD COLUMN verification_token_expires_at DATETIME NULL
-      `);
-      console.log('✅ Added column verification_token_expires_at');
+      await pool.query(
+        'ALTER TABLE users ADD COLUMN verification_token_expires_at DATETIME NULL'
+      );
+      console.log('✅ Added verification_token_expires_at');
     }
+
 
     if (!(await columnExists('user_profiles', 'first_name'))) {
-      await pool.query(`
-        ALTER TABLE user_profiles
-        ADD COLUMN first_name VARCHAR(255)
-      `);
-      console.log('✅ Added column first_name');
+      await pool.query(
+        'ALTER TABLE user_profiles ADD COLUMN first_name VARCHAR(255)'
+      );
+      console.log('✅ Added first_name');
     }
+
 
     if (!(await columnExists('user_profiles', 'last_name'))) {
-      await pool.query(`
-        ALTER TABLE user_profiles
-        ADD COLUMN last_name VARCHAR(255)
-      `);
-      console.log('✅ Added column last_name');
+      await pool.query(
+        'ALTER TABLE user_profiles ADD COLUMN last_name VARCHAR(255)'
+      );
+      console.log('✅ Added last_name');
     }
 
+
     console.log('✅ Migrations executed successfully!');
+
   } catch (error) {
     console.error('❌ Error running migrations:', error);
     process.exitCode = 1;
+
   } finally {
-    await pool.end();
+
+    if (closeConnection) {
+      await pool.end();
+      console.log('✅ Migration DB connection closed');
+    }
+
   }
 }
 
-// Execute when running: npm run migrate
+
+// When executed directly: npm run migrate
 if (import.meta.url === `file://${process.argv[1]}`) {
   console.log('🚀 runMigrations() started');
-  runMigrations();
+
+  runMigrations({ closeConnection: true });
 }
+
 
 export default runMigrations;
