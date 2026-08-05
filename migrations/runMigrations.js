@@ -73,7 +73,9 @@ export async function runMigrations() {
   } catch (error) {
     console.error('❌ Error running migrations:', error);
     process.exitCode = 1;
-  } 
+  } finally {
+    await pool.end();
+  }
 }
 
 // Execute when running: npm run migrate
