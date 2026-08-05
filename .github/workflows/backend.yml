@@ -2,9 +2,13 @@ name: Backend CI/CD
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [master, dev]
   pull_request:
-    branches: [ master, dev ]
+    branches: [master, dev]
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   test:
@@ -33,39 +37,40 @@ jobs:
       DB_NAME: savorly_test
       JWT_SECRET: testsecret
       CLIENT_URL: http://localhost:5174
-      # Dummy email credentials for CI (will not actually be used)
+
+      # Dummy credentials used only for CI tests
       EMAIL_USER: test@example.com
       EMAIL_PASS: testpass
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Wait for MySQL to be ready
+      - name: Wait for MySQL
         run: |
           for i in {1..15}; do
             mysqladmin ping -h 127.0.0.1 -uroot -proot && break
             sleep 3
           done
 
-      # Mock email service so no real emails are sent
-      - name: Setup mocked email service
+      - name: Mock email service
         run: |
           mkdir -p services/__mocks__
           echo "module.exports = { sendEmail: async () => true };" > services/__mocks__/emailService.js
 
-      - name: Run migrations
+      - name: Run database migrations
         run: npm run migrate
 
-      - name: Run seeds
+      - name: Seed database
         run: npm run seed
 
       - name: Run unit tests
@@ -73,3 +78,47 @@ jobs:
 
       - name: Run integration tests
         run: npm run test:integration
+
+  docker-build:
+    name: Build and Publish Docker Image
+
+    needs: test
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+          labels: |
+            org.opencontainers.image.title=Savorly Backend
+            org.opencontainers.image.description=Node.js backend for the Savorly recipe sharing application
+            org.opencontainers.image.source=https://github.com/Elizbeh/savorly-backend
+
+          tags: |
+            ghcr.io/elizbeh/savorly-backend:latest
+            ghcr.io/elizbeh/savorly-backend:${{ github.sha }}

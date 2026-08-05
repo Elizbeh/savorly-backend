@@ -5,8 +5,6 @@ import logger from './logger.js';
 const isProd = process.env.NODE_ENV === 'production';
 const requireSSL = process.env.DB_REQUIRE_SSL === 'true';
 
-console.log('DB_NAME:', process.env.DB_NAME);
-console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
 
 // Only create the pool, do NOT test the connection here
 const pool = mysql
