@@ -168,4 +168,3 @@ jobs:
             curl --fail http://localhost:5000/
 
             echo "Deployment successful!"
-            // AWS deployment test
