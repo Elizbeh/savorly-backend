@@ -138,33 +138,85 @@ jobs:
           script: |
             set -e
 
+            IMAGE="ghcr.io/elizbeh/savorly-backend:${{ github.sha }}"
+            CONTAINER="savorly-api"
+            BACKUP_FILE="$HOME/savorly-previous-image"
+
             echo "Logging into GHCR..."
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io \
               -u "${{ secrets.GHCR_USER }}" \
               --password-stdin
 
-            echo "Pulling image..."
-            docker pull ghcr.io/elizbeh/savorly-backend:${{ github.sha }}
+            echo "Pulling new image..."
+            docker pull "$IMAGE"
+
+            echo "Saving current image for rollback..."
+            if docker inspect "$CONTAINER" >/dev/null 2>&1; then
+              docker inspect "$CONTAINER" \
+                --format '{{.Config.Image}}' > "$BACKUP_FILE"
+              echo "Previous image: $(cat "$BACKUP_FILE")"
+            else
+              echo "No previous container found."
+              rm -f "$BACKUP_FILE"
+            fi
 
             echo "Stopping current container..."
-            docker stop savorly-api || true
+            docker stop "$CONTAINER" || true
 
             echo "Removing current container..."
-            docker rm savorly-api || true
+            docker rm "$CONTAINER" || true
 
             echo "Starting new container..."
             docker run -d \
-              --name savorly-api \
+              --name "$CONTAINER" \
               --restart unless-stopped \
               --env-file ~/savorly.env \
               -p 5000:5000 \
-              ghcr.io/elizbeh/savorly-backend:${{ github.sha }}
+              "$IMAGE"
 
             echo "Checking container..."
             sleep 5
-            docker ps --filter "name=savorly-api"
+            docker ps --filter "name=$CONTAINER"
 
             echo "Testing API health..."
-            curl --fail http://localhost:5000/health
+            if curl --fail --silent --show-error http://localhost:5000/health; then
+              echo ""
+              echo "Health check passed!"
+              echo "Deployment successful!"
+              rm -f "$BACKUP_FILE"
+            else
+              echo ""
+              echo "Health check FAILED!"
+              echo "Rolling back..."
 
-            echo "Deployment successful!"
+              docker logs "$CONTAINER" || true
+
+              docker stop "$CONTAINER" || true
+              docker rm "$CONTAINER" || true
+
+              if [ -f "$BACKUP_FILE" ]; then
+                PREVIOUS_IMAGE=$(cat "$BACKUP_FILE")
+
+                echo "Restoring: $PREVIOUS_IMAGE"
+                docker run -d \
+                  --name "$CONTAINER" \
+                  --restart unless-stopped \
+                  --env-file ~/savorly.env \
+                  -p 5000:5000 \
+                  "$PREVIOUS_IMAGE"
+
+                sleep 5
+
+                echo "Checking rollback health..."
+                curl --fail --silent --show-error http://localhost:5000/health
+
+                echo ""
+                echo "Rollback successful."
+                rm -f "$BACKUP_FILE"
+              else
+                echo "No previous image available for rollback."
+                exit 1
+              fi
+
+              exit 1
+            fi           
