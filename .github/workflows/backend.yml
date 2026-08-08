@@ -122,3 +122,49 @@ jobs:
           tags: |
             ghcr.io/elizbeh/savorly-backend:latest
             ghcr.io/elizbeh/savorly-backend:${{ github.sha }}
+
+  deploy:
+    name: Deploy to AWS EC2
+    needs: docker-build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+
+            echo "Logging into GHCR..."
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io \
+              -u "${{ secrets.GHCR_USER }}" \
+              --password-stdin
+
+            echo "Pulling image..."
+            docker pull ghcr.io/elizbeh/savorly-backend:${{ github.sha }}
+
+            echo "Stopping current container..."
+            docker stop savorly-api || true
+
+            echo "Removing current container..."
+            docker rm savorly-api || true
+
+            echo "Starting new container..."
+            docker run -d \
+              --name savorly-api \
+              --restart unless-stopped \
+              --env-file ~/savorly.env \
+              -p 5000:5000 \
+              ghcr.io/elizbeh/savorly-backend:${{ github.sha }}
+
+            echo "Checking container..."
+            sleep 5
+            docker ps --filter "name=savorly-api"
+
+            echo "Testing API..."
+            curl --fail http://localhost:5000/
+
+            echo "Deployment successful!"
