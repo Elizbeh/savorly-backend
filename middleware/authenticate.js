@@ -32,7 +32,7 @@ export const authenticate = (req, res, next) => {
     logger.info('Token successfully verified'); 
     logger.debug('Decoded User Info:', req.user);
 
-    // Continue to the next middleware or route handler
+    // Continue to the next middleware or route handler _
     next();
   });
 };
