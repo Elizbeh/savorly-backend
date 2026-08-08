@@ -164,7 +164,7 @@ jobs:
             sleep 5
             docker ps --filter "name=savorly-api"
 
-            echo "Testing API..."
-            curl --fail http://localhost:5000/
+            echo "Testing API health..."
+            curl --fail http://localhost:5000/health
 
             echo "Deployment successful!"

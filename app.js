@@ -104,6 +104,13 @@ app.get('/', (req, res) => {
   res.send('Savorly API is running!');
 });
 
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    service: 'savorly-api',
+  });
+});
+
 app.get('/test-origin', (req, res) => {
   const originHeader = req.get('Origin');
   logger.info('Received request from Origin:', originHeader);
