@@ -32,7 +32,7 @@ app.set('trust proxy', 1);
 const allowedOrigins = [
   ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL] : []),
    'https://elizbeh.github.io',
-  'https://localhost:5173',
+  'http://localhost:5174',
 ];
 
 const corsOptions = {

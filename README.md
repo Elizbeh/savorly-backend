@@ -29,7 +29,7 @@ The backend is built with **Node.js**, **Express.js**, and **MySQL (TiDB)** and 
 
 ### Backend API
 
-https://savorly-backend-c6hu.onrender.com
+https://savorly.duckdns.org
 
 ### Frontend
 
