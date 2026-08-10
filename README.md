@@ -1,18 +1,8 @@
 # 🍳 Savorly Backend
 
-A secure, production-ready REST API powering **Savorly**, a full-stack recipe-sharing application.
+A production-ready REST API powering **Savorly**, a full-stack recipe-sharing application.
 
-The backend is built with **Node.js**, **Express.js**, and **MySQL**, and follows modern DevOps practices including:
-
-* 🐳 Docker containerization
-* ⚙️ GitHub Actions CI/CD
-* 🧪 Automated unit and integration testing
-* 🗄️ Automated database migrations
-* 📦 Docker image publishing to GitHub Container Registry (GHCR)
-* ☁️ Automated deployment to AWS EC2
-* 🔄 Automatic deployment rollback on failed health checks
-* 🔐 Environment-based configuration and secrets management
-* 📊 Structured application logging
+The backend is built with **Node.js**, **Express.js**, and **MySQL**, with a DevOps-focused deployment architecture using Docker, GitHub Actions, GitHub Container Registry, AWS EC2, Terraform, automated health checks, and rollback.
 
 ---
 
@@ -35,171 +25,307 @@ https://savorly.duckdns.org/health
 # 🏗️ Production Architecture
 
 ```text
-                         Developer
-                             │
-                             │ git push
-                             ▼
-                      GitHub Repository
-                             │
-                             ▼
+                           Developer
+                               │
+                               │ git push
+                               ▼
+                       GitHub Repository
+                               │
+                               ▼
                     GitHub Actions CI/CD
-                             │
-              ┌──────────────┴──────────────┐
-              │                             │
-              ▼                             ▼
-       Run Tests & DB                Build Docker Image
-        Migrations                         │
-              │                            ▼
-              │                    GitHub Container
-              │                       Registry
-              │                            │
-              └──────────────┬─────────────┘
-                             │
-                             ▼
-                         AWS EC2
-                             │
-                             ▼
-                    Docker Container
-                    savorly-api :5000
-                             │
-                             ▼
-                       Savorly API
-                             │
-                    ┌────────┴────────┐
-                    │                 │
-                    ▼                 ▼
-                 MySQL           Cloudinary
-               Database          Image Storage
+                               │
+                ┌──────────────┴──────────────┐
+                │                             │
+                ▼                             ▼
+         Test & Validate              Build Docker Image
+                │                             │
+                │                             ▼
+                │                    GitHub Container
+                │                       Registry
+                │                             │
+                └──────────────┬──────────────┘
+                               │
+                               ▼
+                           AWS EC2
+                               │
+                               ▼
+                      Docker Container
+                      savorly-api :5000
+                               │
+                               ▼
+                          Savorly API
+                         /          \
+                        /            \
+                       ▼              ▼
+                    MySQL        Cloudinary
+                   Database      Image Storage
+
+
+                 Terraform
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+       AWS EC2             Security Group
+          │
+          └──────────┬──────────┘
+                     │
+                 Remote State
+                     ▼
+                Amazon S3
 ```
 
 ---
 
 # 🔄 CI/CD Pipeline
 
-Every push to `master` or `dev` triggers the GitHub Actions pipeline.
-
-The pipeline performs:
+Every push to `master` or `dev`, as well as pull requests targeting those branches, triggers the backend CI/CD workflow.
 
 ```text
-Push to GitHub
-      │
-      ▼
+Push / Pull Request
+        │
+        ▼
 Checkout Repository
-      │
-      ▼
+        │
+        ▼
+Setup Node.js 20
+        │
+        ▼
 Install Dependencies
-      │
-      ▼
-Start MySQL Service
-      │
-      ▼
+        │
+        ▼
+Start MySQL Test Service
+        │
+        ▼
 Run Database Migrations
-      │
-      ▼
+        │
+        ▼
 Seed Test Database
-      │
-      ▼
-Run Unit Tests
-      │
-      ▼
-Run Integration Tests
-      │
-      ▼
+        │
+        ▼
+Unit Tests
+        │
+        ▼
+Integration Tests
+        │
+        ▼
 Build Docker Image
-      │
-      ▼
-Publish Image to GHCR
-      │
-      ▼
+        │
+        ▼
+Publish to GHCR
+        │
+        ▼
 Deploy to AWS EC2
-      │
-      ▼
+        │
+        ▼
 Pull Image by Commit SHA
-      │
-      ▼
+        │
+        ▼
 Start New Container
-      │
-      ▼
+        │
+        ▼
 Health Check
-      │
-      ├── PASS ──► Deployment Successful
-      │
-      └── FAIL ──► Automatic Rollback
+        │
+   ┌────┴────┐
+   │         │
+ PASS       FAIL
+   │         │
+   ▼         ▼
+Keep      Roll Back
+version   previous image
 ```
 
-### Deployment strategy
+### Pipeline stages
 
-Production Docker images are tagged with the Git commit SHA:
+The pipeline is divided into three jobs:
+
+#### 1. Test
+
+The test job:
+
+* Creates a temporary MySQL 8 service
+* Installs dependencies with `npm ci`
+* Waits for MySQL to become healthy
+* Mocks the email service
+* Runs database migrations
+* Seeds the test database
+* Runs unit tests
+* Runs integration tests
+
+The Docker build cannot start unless the tests pass.
+
+#### 2. Docker Build
+
+After successful testing, the application is:
+
+* Built from the `Dockerfile`
+* Tagged with the Git commit SHA
+* Tagged as `latest`
+* Published to GitHub Container Registry
+
+Example:
 
 ```text
 ghcr.io/elizbeh/savorly-backend:<commit-sha>
 ```
 
-The `latest` tag is also published.
+Using the commit SHA makes every production deployment traceable to an exact Git commit.
 
-Using commit SHA tags makes deployments traceable and allows the previous production image to be restored automatically if a new deployment fails its health check.
+#### 3. AWS Deployment
+
+GitHub Actions connects to the EC2 server using SSH and:
+
+1. Logs into GHCR
+2. Pulls the new Docker image
+3. Saves the currently running image
+4. Stops the existing container
+5. Removes the old container
+6. Starts the new container
+7. Runs the `/health` endpoint
+8. Keeps the new version if healthy
+9. Automatically restores the previous image if the health check fails
 
 ---
 
 # 🔄 Automatic Rollback
 
-The production deployment includes a health-check-based rollback mechanism.
+The deployment process includes a health-check-based rollback strategy.
+
+```text
+                New Docker Image
+                       │
+                       ▼
+                Start container
+                       │
+                       ▼
+                GET /health
+                       │
+              ┌────────┴────────┐
+              │                 │
+             PASS              FAIL
+              │                 │
+              ▼                 ▼
+        Deployment OK       Stop container
+                                  │
+                                  ▼
+                         Restore previous image
+                                  │
+                                  ▼
+                            Health check
+                                  │
+                                  ▼
+                         Rollback successful
+```
 
 Before replacing the running container, the currently deployed image is saved.
 
-After deployment:
-
-```text
-New container starts
-       │
-       ▼
-GET /health
-       │
-   ┌───┴───┐
-   │       │
-  PASS    FAIL
-   │       │
-   ▼       ▼
-Keep     Stop new
-new      container
-version      │
-             ▼
-        Restore previous
-           image
-             │
-             ▼
-        Health check
-```
-
-This prevents a broken Docker image from remaining in production.
+This provides a simple deployment safety mechanism without requiring manual intervention when a new version fails its health check.
 
 ---
 
-# 🐳 Docker Architecture
+# 🐳 Docker
 
-Local development uses Docker Compose:
+The backend is containerized using Docker.
+
+### Production container
 
 ```text
-              Docker Compose
-
-       ┌────────────────────────┐
-       │        Backend         │
-       │  Node.js + Express API │
-       └───────────┬────────────┘
-                   │
-                   ▼
-       ┌────────────────────────┐
-       │        MySQL 8         │
-       │       Database         │
-       └────────────────────────┘
-
-       ┌────────────────────────┐
-       │   Migration Service    │
-       │     npm run migrate    │
-       └────────────────────────┘
+Docker Image
+     │
+     ▼
+GitHub Container Registry
+     │
+     ▼
+AWS EC2
+     │
+     ▼
+savorly-api
+     │
+     └── Port 5000
 ```
 
-The migration process initializes and updates the database schema before the application runs.
+### Local development
+
+Docker Compose is used to run the backend and MySQL together:
+
+```text
+        Docker Compose
+              │
+       ┌──────┴──────┐
+       ▼             ▼
+    Backend         MySQL 8
+    Node.js         Database
+```
+
+---
+
+# ☁️ Infrastructure as Code
+
+The AWS infrastructure is now managed with **Terraform**.
+
+Terraform manages the existing Savorly infrastructure, including:
+
+* AWS EC2 instance
+* EC2 security group
+* Infrastructure variables
+* Terraform outputs
+* Remote Terraform state
+
+The existing AWS resources were imported into Terraform rather than recreated, allowing the production infrastructure to be brought under Infrastructure as Code safely.
+
+### Terraform architecture
+
+```text
+                    Terraform
+                        │
+          ┌─────────────┴─────────────┐
+          │                           │
+          ▼                           ▼
+      AWS EC2                  Security Group
+          │                           │
+          └─────────────┬─────────────┘
+                        │
+                        ▼
+                  AWS Infrastructure
+```
+
+### Remote Terraform state
+
+Terraform state is stored remotely in **Amazon S3** instead of being committed to Git.
+
+```text
+Terraform Code
+     │
+     ▼
+GitHub Repository
+
+Terraform State
+     │
+     ▼
+Amazon S3
+```
+
+This separates infrastructure configuration from infrastructure state and prevents the state file from being stored in the repository.
+
+### Terraform workflow
+
+```bash
+terraform init
+terraform validate
+terraform plan
+terraform apply
+```
+
+The infrastructure is regularly verified with:
+
+```bash
+terraform plan
+```
+
+A clean infrastructure state produces:
+
+```text
+No changes. Your infrastructure matches the configuration.
+```
 
 ---
 
@@ -219,11 +345,20 @@ savorly-backend/
 │   ├── unit/
 │   └── integration/
 │
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   ├── .gitignore
+│   └── .terraform.lock.hcl
+│
 ├── Dockerfile
 ├── docker-compose.yml
 ├── server.js
 └── package.json
 ```
+
+Terraform state files and the `.terraform` working directory are intentionally excluded from Git.
 
 ---
 
@@ -263,13 +398,15 @@ The API implements several security measures:
 * XSS protection
 * Rate limiting
 * Joi request validation
-* Secure cookies
+* Secure HTTP cookies
 * JWT authentication
 * Parameterized SQL queries
 * CORS configuration
 * Environment-based secrets
 
-Production secrets are stored outside the repository and injected into the Docker container through environment configuration.
+Production secrets are kept outside the repository and injected into the Docker container through environment configuration.
+
+Sensitive credentials are never stored in the Git repository.
 
 ---
 
@@ -280,25 +417,31 @@ The backend uses MySQL with:
 * Connection pooling
 * Automated migrations
 * Database seeding
-* Test database isolation
+* Isolated test database
 * Migration checks for existing columns
 
-Database migrations can be executed with:
+Run migrations:
 
 ```bash
 npm run migrate
+```
+
+Seed the database:
+
+```bash
+npm run seed
 ```
 
 ---
 
 # 🧪 Testing
 
-Testing is automated using:
+Testing is automated with:
 
 * Jest
 * Supertest
 
-The CI pipeline runs:
+The CI pipeline executes:
 
 ```text
 Unit Tests
@@ -310,7 +453,7 @@ Integration Tests
 Docker Build
 ```
 
-A Docker image is only published after the test stage succeeds.
+The Docker image is only published after the test stage succeeds.
 
 ---
 
@@ -318,14 +461,14 @@ A Docker image is only published after the test stage succeeds.
 
 Application logging is handled with **Winston**.
 
-The backend provides structured logging for:
+Structured logging is used for:
 
 * Database connections
 * Authentication events
 * CORS requests
 * Validation errors
 * Application errors
-* Deployment/runtime debugging
+* Runtime debugging
 
 ---
 
@@ -336,8 +479,6 @@ Build and start the application:
 ```bash
 docker compose up --build
 ```
-
-This starts the required local services.
 
 Stop containers:
 
@@ -427,7 +568,7 @@ Production images are published to GitHub Container Registry:
 ghcr.io/elizbeh/savorly-backend
 ```
 
-Example:
+Pull the latest image:
 
 ```bash
 docker pull ghcr.io/elizbeh/savorly-backend:latest
@@ -489,15 +630,27 @@ ghcr.io/elizbeh/savorly-backend:<commit-sha>
 * Jest
 * Supertest
 
-### DevOps & Cloud
+### Containers
 
 * Docker
 * Docker Compose
+
+### CI/CD
+
 * GitHub Actions
 * GitHub Container Registry
+* SSH-based AWS deployment
+* Automated health checks
+* Automatic rollback
+* Commit SHA image versioning
+
+### Cloud & Infrastructure
+
 * AWS EC2
-* SSH-based automated deployment
-* Health-check-based rollback
+* Amazon S3
+* Terraform
+* Infrastructure as Code
+* Remote Terraform state
 
 ### Security
 
@@ -547,7 +700,10 @@ MIT License.
 
 Planned DevOps improvements include:
 
-* Infrastructure as Code with Terraform
+* Terraform management of additional AWS resources
+* More restrictive SSH/network security
+* Infrastructure provisioning automation
+* Terraform CI/CD with automated `plan`
 * Kubernetes deployment
 * Prometheus and Grafana monitoring
 * Docker image vulnerability scanning
@@ -557,8 +713,10 @@ Planned DevOps improvements include:
 
 ---
 
-> Savorly demonstrates modern backend engineering and DevOps practices through containerization, automated testing, CI/CD, GitHub Container Registry, AWS deployment, health checks, and automatic rollback.
+> Savorly demonstrates modern backend engineering and DevOps practices through containerization, automated testing, CI/CD, GitHub Container Registry, Infrastructure as Code with Terraform, AWS deployment, remote Terraform state, health checks, and automatic rollback.
 >
 > **Frontend:** https://elizbeh.github.io/savorly-frontend/
 >
 > **Production API:** https://savorly.duckdns.org
+>
+> **API Health:** https://savorly.duckdns.org/health
